@@ -24,10 +24,12 @@ class Calculation ():
 		self.standardOutdataFile = "SCORES.OUT"
 		self.standardCoeffFile = "COEFF.OUT"
 		self.exe_file_path = pyscores2.exe_file_path
-		
-		self.outDataPath = os.path.join(self.outDataDirectory,self.indataFileName + ".out")
 
-		self.coeffPath = os.path.join(self.outDataDirectory,self.indataFileName + "-COEFF.out")
+		self.outDataPath = os.path.join(self.outDataDirectory, self.indataFileName + ".out")
+		self.indata_path = os.path.join(self.outDataDirectory, self.indataFileName + ".in")
+		self.coeffPath = os.path.join(self.outDataDirectory, self.indataFileName + "-COEFF.out")
+		self.TDPFIL_path = os.path.join(self.outDataDirectory, "TDPFIL")
+
 
 		self.errorDescriptions = {}
 		self.errorDescriptions["unknown"] = r'Unknown error'
@@ -40,7 +42,7 @@ class Calculation ():
 		self.errorDescriptions["  6"] = r'TDP file label does not equal title data, col. 1-30'
 		
 
-	def runScores2(self):
+	def run(self):
 
 		#Remove old indata and result files:
 		if os.path.exists(self.standardIndataFile):
@@ -66,16 +68,12 @@ class Calculation ():
 
 		process = subprocess.Popen(self.exe_file_path,stderr=subprocess.PIPE)
 		process.wait()
-		
 
 		#Copy the resultfiles to the outDataDirectory:
-		try : shutil.copyfile(self.standardOutdataFile,self.outDataPath)
-		except:
-			raise
-
-		try : shutil.copyfile(self.standardCoeffFile,self.coeffPath)
-		except:
-			raise
+		shutil.move(self.standardOutdataFile,self.outDataPath)
+		shutil.move(self.standardCoeffFile,self.coeffPath)
+		shutil.move(self.standardIndataFile, self.indata_path)
+		shutil.move('TDPFIL',self.TDPFIL_path)
 
 	def getResult(self):
 
@@ -195,7 +193,7 @@ def batchRunScores2(indataDirectory,outDataDirectory):
 		
 		if fileExtension == ".in":
 			calculation = Calculation(os.path.join(indataDirectory, indataFile), outDataDirectory)
-			calculation.runScores2()			
+			calculation.run()
 			calculation.getResult()		
 			
 			Tz = 10.0

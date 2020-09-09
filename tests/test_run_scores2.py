@@ -10,7 +10,7 @@ def calculation(tmpdir):
 
 def test_run(calculation):
 
-    calculation.runScores2()
+    calculation.run()
 
 
 
