@@ -7,7 +7,7 @@ from . import resultGUI
 from . import waveSpectrumGUI
 import copy
 from . import waveSpectrum
-from . import XMLHydrostatics
+from . import xml_hydrostatics
 
 class Widget(QtGui.QWidget):
 	def __init__(self,parent=None):
@@ -623,7 +623,7 @@ class MainWindow(QtGui.QMainWindow):
 		#Load indata from file:
 		if os.path.exists(fname):
 
-			hydrostatics = XMLHydrostatics.Parser(fname)
+			hydrostatics = xml_hydrostatics.Parser(fname)
 
 			#Take copy of current indata: 
 			tempIndata = copy.copy(self.scores2Indata)
