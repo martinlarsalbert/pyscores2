@@ -1,5 +1,5 @@
 import pytest
-from pyscores2.output_file_parser import OutputFile
+from pyscores2.output import OutputFile
 
 def test_load_file():
 
@@ -18,7 +18,9 @@ def test_load_roll_damping(scores_file):
     result = scores_file.results[181][90]
     assert result.calculated_wave_damping_in_roll==3264.0
 
-    a = 1
+def test_get_result_for_one_speed_and_wave(scores_file):
+    result = scores_file.results[181][90]
+    df = result.get_result()
 
 
 

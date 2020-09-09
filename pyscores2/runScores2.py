@@ -2,7 +2,7 @@ import sys
 import os
 import shutil
 import subprocess
-from . import output_file_parser
+from . import output
 from . import constants
 from . import RAO
 import re
@@ -97,7 +97,7 @@ class Calculation ():
 		if not self.is_successfull_run:
 			raise ValueError('Please run a successfull calculation first')
 
-		self.scoresFile = output_file_parser.OutputFile(self.outDataPath)
+		self.scoresFile = output.OutputFile(self.outDataPath)
 
 		#Apply high wave frequency correction on the added resistance according to Bystrom:
 		self.bystromCorrection()

@@ -2,6 +2,7 @@ import re
 import sys
 import os
 import numpy as np
+import pandas as pd
 from .constants import g
 from .constants import rho
 from . import waveSpectrum
@@ -198,6 +199,13 @@ class OutputFile():
 			#"RESPONSE (AMPLITUDE) SPECTRA"
 
 
+	def get_results(self):
+		"""
+		This will return all reponses as a pandas data frame.
+		:return df: pandas data frame
+		"""
+		pass
+
 	def getGeometry(self):
 		#This function reads the geometry definition matrix in the beginning av the file:
 			
@@ -334,6 +342,29 @@ class Result():
 		self.pointAccelerations = pointAccelerationsClass(self.str,self.itemSeparator)
 
 		a=1
+
+	def get_result(self):
+		"""
+		:return: pandas dataframe with results for this speed and wave direction
+		"""
+		responses = [
+			self.verticalPlaneResponses,
+			self.addedResistance,
+			self.lateralPlaneResponses,
+			#self.pointAccelerations,
+		]
+
+		dfs=[]
+		for response in responses:
+			df_ = pd.DataFrame(data=response.__dict__)
+			df_.set_index(['frequencies','encounterFrequencies','waveLengths'], inplace=True)
+			df_.drop(columns=['str','itemSeparator'], inplace=True)
+			dfs.append(df_)
+		
+		df = pd.concat(dfs, axis=1)
+		return df
+
+
 
 class IrregularResults():
 

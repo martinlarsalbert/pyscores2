@@ -3,7 +3,7 @@ import PyQt4.QtGui as QtGui
 import PyQt4.QtCore as QtCore
 from . import indata
 import os.path
-from . import output_file_parser
+from . import output
 import numpy as np
 from . import plotWindow
 import scipy.io
@@ -39,7 +39,7 @@ class ResultWidget(QtGui.QDockWidget):
 
 	def showResults(self,resultPath):
 		self.resultPath = resultPath
-		self.scoresFile = output_file_parser.OutputFile(self.resultPath)
+		self.scoresFile = output.OutputFile(self.resultPath)
 		#Run bystrom correction for all added resistance raos:
 		#self.scoresFile.runBystromCorrectionForAll()
 		
