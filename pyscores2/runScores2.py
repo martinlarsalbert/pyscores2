@@ -6,6 +6,7 @@ from . import scorseFileParser
 from . import constants
 from . import RAO
 import re
+import pyscores2
 
 class scores2CalculationClass ():
 
@@ -22,6 +23,7 @@ class scores2CalculationClass ():
 		self.standardIndataFile = "scores.in"
 		self.standardOutdataFile = "SCORES.OUT"
 		self.standardCoeffFile = "COEFF.OUT"
+		self.exe_file_path = pyscores2.exe_file_path
 		
 		self.outDataPath = os.path.join(self.outDataDirectory,self.indataFileName + ".out")
 
@@ -58,8 +60,11 @@ class scores2CalculationClass ():
 		#run Scores2:
 		print("Running Scores2 for %s" % self.indataFileName)
 	#	os.system('scores2.exe ' + self.standardIndataFile)
-		
-		process = subprocess.Popen('scores2.exe',stderr=subprocess.PIPE)
+
+		if not os.path.exists(self.exe_file_path):
+			raise ValueError('Cannot find the executable for Scores2 in:%s' % self.exe_file_path)
+
+		process = subprocess.Popen(self.exe_file_path,stderr=subprocess.PIPE)
 		process.wait()
 		
 

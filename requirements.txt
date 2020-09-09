@@ -1,4 +1,5 @@
 pandas
 matplotlib
+scipy
 jupyter
 pytest
