@@ -22,6 +22,10 @@ def test_get_result_for_one_speed_and_wave(scores_file):
     result = scores_file.results[181][90]
     df = result.get_result()
 
+def test_get_result_for_all(scores_file):
+    df = scores_file.get_result()
+    a=1
+
 
 
 

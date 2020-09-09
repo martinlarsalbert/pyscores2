@@ -199,12 +199,21 @@ class OutputFile():
 			#"RESPONSE (AMPLITUDE) SPECTRA"
 
 
-	def get_results(self):
+	def get_result(self):
 		"""
 		This will return all reponses as a pandas data frame.
 		:return df: pandas data frame
 		"""
-		pass
+		df = pd.DataFrame()
+
+		for speed, results_speed in self.results.items():
+			for wave_direction, results_wave_direction in results_speed.items():
+				df_ = results_wave_direction.get_result()
+				df_['speed']=speed
+				df_['wave direction']=wave_direction
+				df=df.append(df_, ignore_index=True)
+
+		return df
 
 	def getGeometry(self):
 		#This function reads the geometry definition matrix in the beginning av the file:
@@ -356,12 +365,17 @@ class Result():
 
 		dfs=[]
 		for response in responses:
+
+			if response.frequencies is None:
+				continue
+
 			df_ = pd.DataFrame(data=response.__dict__)
 			df_.set_index(['frequencies','encounterFrequencies','waveLengths'], inplace=True)
 			df_.drop(columns=['str','itemSeparator'], inplace=True)
 			dfs.append(df_)
 		
 		df = pd.concat(dfs, axis=1)
+		df.reset_index(inplace=True)
 		return df
 
 
