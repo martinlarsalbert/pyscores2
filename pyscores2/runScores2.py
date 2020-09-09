@@ -8,7 +8,7 @@ from . import RAO
 import re
 import pyscores2
 
-class scores2CalculationClass ():
+class Calculation ():
 
 	def __init__(self,indataPath,outDataDirectory):
 						
@@ -194,7 +194,7 @@ def batchRunScores2(indataDirectory,outDataDirectory):
 		fileName, fileExtension = os.path.splitext(indataFile)
 		
 		if fileExtension == ".in":
-			calculation = scores2CalculationClass(os.path.join(indataDirectory,indataFile),outDataDirectory)
+			calculation = Calculation(os.path.join(indataDirectory, indataFile), outDataDirectory)
 			calculation.runScores2()			
 			calculation.getResult()		
 			

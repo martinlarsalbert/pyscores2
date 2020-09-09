@@ -1,10 +1,10 @@
 import pytest
-from pyscores2.runScores2 import scores2CalculationClass
+from pyscores2.runScores2 import Calculation
 
 @pytest.fixture
 def calculation(tmpdir):
     outdata_directory = str(tmpdir)
-    calculation = scores2CalculationClass(indataPath='temp.in', outDataDirectory=outdata_directory)
+    calculation = Calculation(indataPath='temp.in', outDataDirectory=outdata_directory)
     yield calculation
 
 

@@ -538,7 +538,7 @@ class MainWindow(QtGui.QMainWindow):
 
 			self.w.getData()
 			self.scores2Indata.save(tempIndataPath,self.waveSpectrumWidget.waveSpectrums)
-			calculation = runScores2.scores2CalculationClass(tempIndataPath,os.path.abspath(""))
+			calculation = runScores2.Calculation(tempIndataPath, os.path.abspath(""))
 			calculation.runScores2()
 			
 			
