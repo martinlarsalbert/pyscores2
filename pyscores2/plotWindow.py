@@ -5,70 +5,69 @@ from matplotlib.figure import Figure
 import PyQt4.QtGui as QtGui
 import numpy as np
 
+
 class PlotWindow(QtGui.QDialog):
-	def __init__(self,parent=None):
-		QtGui.QWidget.__init__(self,parent)
-		
-		self.parent = parent
+    def __init__(self, parent=None):
+        QtGui.QWidget.__init__(self, parent)
 
-		self.setGeometry(300,300,600,800)
+        self.parent = parent
 
-		self.dpi = 100
-		self.fig = Figure((5.0, 4.0), dpi=self.dpi)
-		self.canvas = FigureCanvas(self.fig)
-		self.canvas.setParent(self)
+        self.setGeometry(300, 300, 600, 800)
 
-	def plot(self,x,y,xLabel,yLabel,title):
+        self.dpi = 100
+        self.fig = Figure((5.0, 4.0), dpi=self.dpi)
+        self.canvas = FigureCanvas(self.fig)
+        self.canvas.setParent(self)
 
-		self.setWindowTitle(title)
+    def plot(self, x, y, xLabel, yLabel, title):
 
-		x = np.array(x)
-		y = np.array(y)
+        self.setWindowTitle(title)
 
-		self.axes = self.fig.add_subplot(111)
+        x = np.array(x)
+        y = np.array(y)
 
-		vbox = QtGui.QVBoxLayout()
-		vbox.addWidget(self.canvas)
+        self.axes = self.fig.add_subplot(111)
 
-		self.setLayout(vbox)
+        vbox = QtGui.QVBoxLayout()
+        vbox.addWidget(self.canvas)
 
-			
-		self.axes.clear() 
-		self.axes.grid(True)	
-	
-		self.axes.plot(x,y)
-		self.axes.set_xlabel(xLabel)
-		self.axes.set_ylabel(yLabel)
-		self.axes.set_title(title)
+        self.setLayout(vbox)
 
-		self.show()
+        self.axes.clear()
+        self.axes.grid(True)
 
-	def plot2(self,x1,y1,x2,y2,xLabel,yLabel,title):
+        self.axes.plot(x, y)
+        self.axes.set_xlabel(xLabel)
+        self.axes.set_ylabel(yLabel)
+        self.axes.set_title(title)
 
-		self.setWindowTitle(title)
+        self.show()
 
-		x1 = np.array(x1)
-		y1 = np.array(y1)
+    def plot2(self, x1, y1, x2, y2, xLabel, yLabel, title):
 
-		x2 = np.array(x2)
-		y2 = np.array(y2)
+        self.setWindowTitle(title)
 
-		self.axes = self.fig.add_subplot(111)
+        x1 = np.array(x1)
+        y1 = np.array(y1)
 
-		vbox = QtGui.QVBoxLayout()
-		vbox.addWidget(self.canvas)
+        x2 = np.array(x2)
+        y2 = np.array(y2)
 
-		self.setLayout(vbox)
+        self.axes = self.fig.add_subplot(111)
 
-			
-		self.axes.clear() 
-		self.axes.grid(True)	
-	
-		p1 = self.axes.plot(x1,y1)
-		p2 = self.axes.plot(x2,y2)	
-		
-		self.axes.set_xlabel(xLabel)
-		self.axes.set_ylabel(yLabel)
-		self.axes.set_title(title)
+        vbox = QtGui.QVBoxLayout()
+        vbox.addWidget(self.canvas)
 
-		self.show()
+        self.setLayout(vbox)
+
+        self.axes.clear()
+        self.axes.grid(True)
+
+        p1 = self.axes.plot(x1, y1)
+        p2 = self.axes.plot(x2, y2)
+
+        self.axes.set_xlabel(xLabel)
+        self.axes.set_ylabel(yLabel)
+        self.axes.set_title(title)
+
+        self.show()

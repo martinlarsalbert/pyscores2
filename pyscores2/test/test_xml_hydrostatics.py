@@ -6,7 +6,3 @@ def test_parse_hydostratics():
     conditions = list(xml_parser.conditions.keys())
     indata = xml_parser.convertToScores2Indata(conditionName=conditions[0])
     a = 1
-
-
-
-
