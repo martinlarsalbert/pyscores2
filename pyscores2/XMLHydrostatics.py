@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as etree
-import pyscores2.scores2Indata
+from pyscores2 import scores2Indata
 
 
 class Parser(object):

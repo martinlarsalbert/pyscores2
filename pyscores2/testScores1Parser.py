@@ -1,4 +1,4 @@
-import scores1FileParser
+from . import scores1FileParser
 import numpy as np
 from matplotlib.pylab import *
 
@@ -6,13 +6,13 @@ scores1File = scores1FileParser.Scores1Results(filePath = "res207")
 
 
 spectrum = 0
-speeds = scores1File.waveSpectras[spectrum].responses.keys()
+speeds = list(scores1File.waveSpectras[spectrum].responses.keys())
 speed = speeds[0]
 
 waveDirections = []
 rolls = []
 
-for waveDirection,responses in sorted(scores1File.waveSpectras[spectrum].responses[speed].iteritems()):
+for waveDirection,responses in sorted(scores1File.waveSpectras[spectrum].responses[speed].items()):
 	waveDirections.append(waveDirection)
 	rolls.append(responses["roll"])
 

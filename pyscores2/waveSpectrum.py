@@ -18,11 +18,11 @@ class WaveSpectrum(object):
 
 	def calculateFromScoresFile(self,scoresFile):
 
-		for speed in sorted(scoresFile.results.iterkeys()):
+		for speed in sorted(scoresFile.results.keys()):
 			
 			self.results[speed] = {}
 									
-			for waveAngle in sorted(scoresFile.results[speed].iterkeys()):
+			for waveAngle in sorted(scoresFile.results[speed].keys()):
 
 				#result.addedResistance.forces
 				#result.addedResistance.moments

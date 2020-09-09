@@ -110,7 +110,7 @@ class ResultTreeModel(QtCore.QAbstractItemModel):
 										
 					subVariables = vars(variables[variable])
 
-					for subVariable in subVariables.iterkeys():
+					for subVariable in subVariables.keys():
 						if type(subVariables[subVariable]) == type(np.array([]))\
 							and subVariable !="encounterFrequencies" and subVariable !="frequencies" and subVariable !="waveLengths":
 							

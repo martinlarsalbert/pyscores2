@@ -1,11 +1,11 @@
 from PyQt4.QtCore import *
 import PyQt4.QtGui as QtGui
 import PyQt4.QtCore as QtCore
-import scores2Indata
+from . import scores2Indata
 import os.path
-import scorseFileParser
+from . import scorseFileParser
 import numpy as np
-import plotWindow
+from . import plotWindow
 import scipy.io
 
 class ResultWidget(QtGui.QDockWidget):
@@ -53,12 +53,12 @@ class ResultWidget(QtGui.QDockWidget):
 	def fillTree(self,parent,results):
 		column = 0
 		
-		for speed in sorted(results.iterkeys()):
+		for speed in sorted(results.keys()):
 			
 			itemName =  "Speed: %0.2f knots" % speed			
 			item = self.addParent(parent, column, itemName, 'data Clients')
 			
-			for waveAngle in sorted(results[speed].iterkeys()):
+			for waveAngle in sorted(results[speed].keys()):
 				
 				itemName = "Wave direction: %0.1f" % waveAngle 
 				
@@ -89,7 +89,7 @@ class ResultWidget(QtGui.QDockWidget):
 		
 		variables = vars(datas)
 		
-		for variable in variables.iterkeys():
+		for variable in variables.keys():
 			if type(variables[variable]) == type(np.array([])) \
 				and variable !="encounterFrequencies" and variable !="frequencies" and variable !="waveLengths":
 				item2 = self.addParent(item, column, variable, '')		
@@ -111,9 +111,9 @@ class ResultWidget(QtGui.QDockWidget):
 
 	def handleChanged(self, item, column):
 		if item.checkState(column) == QtCore.Qt.Checked:
-			print "checked", item, item.text(column)
+			print("checked", item, item.text(column))
 		if item.checkState(column) == QtCore.Qt.Unchecked:
-			print "unchecked", item, item.text(column)
+			print("unchecked", item, item.text(column))
 	
 	
 	def treePopup(self,point):
@@ -192,8 +192,8 @@ class ResultWidget(QtGui.QDockWidget):
 			B = self.scoresFile.geometry.B
 			
 			matrix=[]
-			for speed, speedResults in self.scoresFile.results.iteritems():
-				for waveAngle,waveDirResult in speedResults.items():
+			for speed, speedResults in self.scoresFile.results.items():
+				for waveAngle,waveDirResult in list(speedResults.items()):
 					
 					#waveAngle = waveDirResult.waveAngle
 					#speed = waveDirResult.speed
@@ -234,7 +234,7 @@ class ResultWidget(QtGui.QDockWidget):
 			numberOfWaveDirections = 1
 			numberOfRAOs = 3	#Set the number of possible RAOs
 
-			for speed, speedResults in self.scoresFile.results.iteritems():
+			for speed, speedResults in self.scoresFile.results.items():
 				tempNumberOfWaveDirections = len(speedResults)
 				if tempNumberOfWaveDirections > numberOfWaveDirections:
 					numberOfWaveDirection =  tempNumberOfWaveDirections
@@ -244,9 +244,9 @@ class ResultWidget(QtGui.QDockWidget):
 			RAOs = np.zeros((numberOfWaveDirections,numberOfSpeeds,numberOfRAOs), dtype=dt)			
 
 			speedCounter = 0
-			for speed, speedResults in self.scoresFile.results.iteritems():
+			for speed, speedResults in self.scoresFile.results.items():
 				waveAngleCounter = 0
-				for waveAngle,waveDirResult in speedResults.items():
+				for waveAngle,waveDirResult in list(speedResults.items()):
 											
 					
 					#for addedResistance,waveLength in zip(waveDirResult.addedResistance.forces,waveDirResult.addedResistance.waveLengths):

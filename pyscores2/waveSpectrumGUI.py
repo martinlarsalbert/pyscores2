@@ -1,13 +1,13 @@
 from PyQt4.QtCore import *
 import PyQt4.QtGui as QtGui
 import PyQt4.QtCore as QtCore
-import scores2Indata
+from . import scores2Indata
 import os.path
-import scorseFileParser
+from . import scorseFileParser
 import numpy as np
-import plotWindow
+from . import plotWindow
 import scipy.io
-import waveSpectrum
+from . import waveSpectrum
 import copy
 import pickle
 import datetime
@@ -88,11 +88,11 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 
 		if self.treeWidget.currentItem() == self.spectrumsItem:
 			self.popMenu1.exec_( self.treeWidget.mapToGlobal(point) )
-		elif self.spectrumItemDict.has_key(self.treeWidget.currentItem()):
+		elif self.treeWidget.currentItem() in self.spectrumItemDict:
 			self.popMenuSpectrum.exec_( self.treeWidget.mapToGlobal(point) )
-		elif self.resultVariableDict.has_key(self.treeWidget.currentItem()):
+		elif self.treeWidget.currentItem() in self.resultVariableDict:
 			self.popMenuResult.exec_( self.treeWidget.mapToGlobal(point) )
-		elif self.resultsVariableDict.has_key(self.treeWidget.currentItem()):
+		elif self.treeWidget.currentItem() in self.resultsVariableDict:
 			self.popMenuResults.exec_( self.treeWidget.mapToGlobal(point) )
 	
 	def addSpectrumGUI(self,point):
@@ -136,7 +136,7 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 		parametersItem.setExpanded (True)
 		
 		parameterDictionary = newSpectrum.getParameterDict()
-		for parameter in parameterDictionary.iterkeys():
+		for parameter in parameterDictionary.keys():
 			parameterItem = QtGui.QTreeWidgetItem(parametersItem, [parameter,str(parameterDictionary[parameter])])
 			parameterItem.setExpanded (True)
 		
@@ -224,16 +224,16 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 
 		self.resultsVariableDict[resultsItem] = spectrum
 
-		for speed in sorted(spectrum.results.iterkeys()):
+		for speed in sorted(spectrum.results.keys()):
 			speedsItem = self.addParent(resultsItem,0,"Speed: %4.2f" % speed,None)
 			
-			for waveDirection in sorted(spectrum.results[speed].iterkeys()):
+			for waveDirection in sorted(spectrum.results[speed].keys()):
 				waveDirectionsItem = self.addParent(speedsItem,0,"Wave direction: %4.2f" % waveDirection,None)
 								
-				for kind in spectrum.results[speed][waveDirection].iterkeys():
+				for kind in spectrum.results[speed][waveDirection].keys():
 					kindItem = self.addParent(waveDirectionsItem,0,kind,None)
 						
-					for variable in sorted(spectrum.results[speed][waveDirection][kind].iterkeys()):
+					for variable in sorted(spectrum.results[speed][waveDirection][kind].keys()):
 						
 						#Dirty switch:
 						if spectrum.results[speed][waveDirection][kind][variable].significantValue:
@@ -260,20 +260,20 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 		
 		variableDictionary = {}
 
-		for speed in sorted(spectrum.results.iterkeys()):
+		for speed in sorted(spectrum.results.keys()):
 			
-			for waveDirection in sorted(spectrum.results[speed].iterkeys()):
+			for waveDirection in sorted(spectrum.results[speed].keys()):
 											
-				for kind in spectrum.results[speed][waveDirection].iterkeys():
+				for kind in spectrum.results[speed][waveDirection].keys():
 									
-					for variable in sorted(spectrum.results[speed][waveDirection][kind].iterkeys()):
+					for variable in sorted(spectrum.results[speed][waveDirection][kind].keys()):
 						
 						if kind == "addedResistance":
 							row = [speed,waveDirection,spectrum.results[speed][waveDirection][kind][variable].mean]
 						else:
 							row = [speed,waveDirection,spectrum.results[speed][waveDirection][kind][variable].significantValue]
 						
-						if not variableDictionary.has_key(variable):
+						if variable not in variableDictionary:
 							variableDictionary[variable] = []
 
 						variableDictionary[variable].append(row)
@@ -288,11 +288,11 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 		else:
 			raise TypeError("Unknown spectrum: %s" % spectrum.getType())
 
-		firstColumn = variableDictionary.itervalues().next()						
+		firstColumn = next(iter(variableDictionary.values()))						
 		
 		text +="speed [knots]\twaveDirection [deg]\t"
 
-		for variable in variableDictionary.iterkeys():
+		for variable in variableDictionary.keys():
 			text += "%s\t" % variable
 
 		text +="\n"
@@ -304,7 +304,7 @@ class waveSpectrumWidget(QtGui.QDockWidget):
 			for column in firstColumn[row][0:-1]:
 				text +="%f\t" % column
 			
-			for variable in variableDictionary.itervalues():
+			for variable in variableDictionary.values():
 				value = variable[row][-1]
 				if value:
 					text += "%f\t" % value
@@ -352,7 +352,7 @@ class AddSpectrumWindow(QtGui.QDialog):
 		self.Spectrums["ITTC"] = ITTCSpectrumWindow
 		self.Spectrums["From file"] = FromFileSpectrumWindow
 						
-		for spectrumName in self.Spectrums.iterkeys():
+		for spectrumName in self.Spectrums.keys():
 			self.combo.addItem(spectrumName)
 			
 		#combo.activated[str].connect(self.chooseSpectrum)
@@ -385,7 +385,7 @@ class AddSpectrumWindow(QtGui.QDialog):
 		
 		#Search for the right spectrum type:
 		counter = 0
-		for Spectrum in self.Spectrums.itervalues():
+		for Spectrum in self.Spectrums.values():
 			if Spectrum().WaveSpectrum == type(spectrum):
 				self.combo.setCurrentIndex(counter)
 				break

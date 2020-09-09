@@ -2,11 +2,11 @@ import re
 import sys
 import os
 import numpy as np
-from constants import g
-from constants import rho
-import waveSpectrum
+from .constants import g
+from .constants import rho
+from . import waveSpectrum
 
-import RAO
+from . import RAO
 
 class scorseFileClass():
 
@@ -25,7 +25,7 @@ class scorseFileClass():
 		try:
 			file = open(self.filePath,mode='r')
 		except IOError as e:
-			print "I/O error({0}): {1}".format(e.errno, e.strerror)
+			print("I/O error({0}): {1}".format(e.errno, e.strerror))
 		
 		str = file.read()			
 		file.close()
@@ -62,8 +62,8 @@ class scorseFileClass():
 			angle = result.waveAngle
 			
 			#results
-			if self.results.has_key(speed):
-				if self.results[speed].has_key(angle):
+			if speed in self.results:
+				if angle in self.results[speed]:
 					raise ValueError("Value for speed:%f, wave angle:%f already exists in results!" % (speed,angle))
 				else:
 					self.results[speed][angle] = result
@@ -134,11 +134,11 @@ class scorseFileClass():
 			spectrumIndex = "%f,%f" % (waveHeight,meanPeriod)
 			
 			#irregular results
-			if self.irregularResults.has_key(spectrumIndex):
+			if spectrumIndex in self.irregularResults:
 
-				if self.irregularResults[spectrumIndex].has_key(speed):
+				if speed in self.irregularResults[spectrumIndex]:
 					
-					if self.irregularResults[spectrumIndex][speed].has_key(waveAngle):
+					if waveAngle in self.irregularResults[spectrumIndex][speed]:
 						raise ValueError("Value for speed:%f, wave angle:%f already exists in results!" % (speed,waveAngle))
 					else:
 						self.irregularResults[spectrumIndex][speed][waveAngle] = {}
@@ -147,7 +147,7 @@ class scorseFileClass():
 						self.irregularResults[spectrumIndex][speed][waveAngle]["addedResistance"]["force"] = addedResistance
 
 						self.irregularResults[spectrumIndex][speed][waveAngle]["motions"] = {}
-						for title,value in motions.iteritems():
+						for title,value in motions.items():
 							self.irregularResults[spectrumIndex][speed][waveAngle]["motions"][title] = waveSpectrum.IrregularResult(std=value)
 												
 				else:
@@ -157,7 +157,7 @@ class scorseFileClass():
 					self.irregularResults[spectrumIndex][speed][waveAngle]["addedResistance"]["force"] = addedResistance
 
 					self.irregularResults[spectrumIndex][speed][waveAngle]["motions"] = {}
-					for title,value in motions.iteritems():
+					for title,value in motions.items():
 						self.irregularResults[spectrumIndex][speed][waveAngle]["motions"][title] = waveSpectrum.IrregularResult(std=value)
 			else:
 				self.irregularResults[spectrumIndex] = {}
@@ -167,21 +167,21 @@ class scorseFileClass():
 				self.irregularResults[spectrumIndex][speed][waveAngle]["addedResistance"]["force"] = addedResistance
 
 				self.irregularResults[spectrumIndex][speed][waveAngle]["motions"] = {}
-				for title,value in motions.iteritems():
+				for title,value in motions.items():
 					self.irregularResults[spectrumIndex][speed][waveAngle]["motions"][title] = waveSpectrum.IrregularResult(std=value)
 
 
 		
-			if not firstSpectrumIterations.has_key(spectrumIndex):
+			if spectrumIndex not in firstSpectrumIterations:
 				firstSpectrumIterations[spectrumIndex] = i
 
 			spectrumIndexDict = {}
-			for spectrumIndex,i in firstSpectrumIterations.iteritems():
+			for spectrumIndex,i in firstSpectrumIterations.items():
 				spectrumIndexDict[i] = spectrumIndex
 
 			#This list keeps track of the order of the spectrumIndexes (based on the order they appear in the result file)
 			self.spectrumIndexList = []
-			for i in sorted(spectrumIndexDict.iterkeys()):
+			for i in sorted(spectrumIndexDict.keys()):
 				self.spectrumIndexList.append(spectrumIndexDict[i])
 
 
@@ -624,14 +624,14 @@ if __name__ == "__main__":
 		scoresFilePath = sys.argv[1]	
 		
 		if not os.path.exists(scoresFilePath):
-			print 'Error: The indataDirectory does not exist.'
+			print('Error: The indataDirectory does not exist.')
 			sys.exit(1)
 	
 		scoresFile = scorseFileClass(scoresFilePath)
 		a=1
 
 	else:
-		print 'Error: This program should be called like this: scoresFileParser "scoresFilePath"'
+		print('Error: This program should be called like this: scoresFileParser "scoresFilePath"')
 		
 		sys.exit(1)
 

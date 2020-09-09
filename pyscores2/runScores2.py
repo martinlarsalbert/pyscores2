@@ -2,9 +2,9 @@ import sys
 import os
 import shutil
 import subprocess
-import scorseFileParser
-import constants
-import RAO
+from . import scorseFileParser
+from . import constants
+from . import RAO
 import re
 
 class scores2CalculationClass ():
@@ -56,7 +56,7 @@ class scores2CalculationClass ():
 			raise
 
 		#run Scores2:
-		print "Running Scores2 for %s" % self.indataFileName
+		print("Running Scores2 for %s" % self.indataFileName)
 	#	os.system('scores2.exe ' + self.standardIndataFile)
 		
 		process = subprocess.Popen('scores2.exe',stderr=subprocess.PIPE)
@@ -108,7 +108,7 @@ class scores2CalculationClass ():
 		else:
 			errorCode = 'unknown'
 
-		if self.errorDescriptions.has_key(errorCode):
+		if errorCode in self.errorDescriptions:
 			errorDescription = self.errorDescriptions[errorCode]
 		else:
 			errorDescription = 'unknown error'
@@ -179,7 +179,7 @@ class scores2CalculationClass ():
 def batchRunScores2(indataDirectory,outDataDirectory):
 
 	if not os.path.exists(outDataDirectory):
-		print "Create: %s" % outDataDirectory 
+		print("Create: %s" % outDataDirectory) 
 		os.mkdir(outDataDirectory)
 		
 	indataFiles = os.listdir(indataDirectory)
@@ -211,12 +211,12 @@ if __name__ == "__main__":
 		
 		
 		if not os.path.exists(inDataDirectory):
-			print 'Error: The indataDirectory does not exist.'
+			print('Error: The indataDirectory does not exist.')
 			sys.exit(1)
 	
 		batchRunScores2(inDataDirectory,outDataDirectory)
 		a=1
 	else:
-		print 'Error: This program should be called like this: batchRunScores "inDataDirectory" "outDataDirectory'
+		print('Error: This program should be called like this: batchRunScores "inDataDirectory" "outDataDirectory')
 		
 		sys.exit(1)

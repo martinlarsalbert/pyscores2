@@ -4,7 +4,7 @@ import logging
 from scipy.interpolate import interp1d
 from scipy.integrate import trapz
 
-from constants import g
+from .constants import g
 
 log = logging.getLogger("RAO")
 
@@ -21,9 +21,9 @@ class RAOs():
 
 		newRao = True
 
-		if self.RAOs.has_key(rowIndex):
+		if rowIndex in self.RAOs:
 			row = self.RAOs[rowIndex]
-			if row.has_key(columnIndex):
+			if columnIndex in row:
 				#If this cell already exist, nothing happends:
 				newRao = False
 			else:
@@ -41,9 +41,9 @@ class RAOs():
 		a = 1
 	
 	def get(self,rowIndex,columnIndex):
-		if self.RAOs.has_key(rowIndex):
+		if rowIndex in self.RAOs:
 			row = self.RAOs[rowIndex]
-			if row.has_key(columnIndex):
+			if columnIndex in row:
 				return self.RAOs[rowIndex][columnIndex]
 		
 		raise ValueError("RAO for rowIndex = %f and columnIndex = %f does not exist" % (rowIndex,columnIndex))
@@ -56,10 +56,10 @@ class RAOs():
 		#RAOs[10][180,150,120]
 		#RAOs[20][180, 160 ,120]
 
-		speedKeys = self.RAOs.itervalues().next().keys()
+		speedKeys = iter(self.RAOs.values()).next().keys()
 
-		for speeds in self.RAOs.itervalues():
-			if speeds.keys() != speedKeys:
+		for speeds in self.RAOs.values():
+			if list(speeds.keys()) != speedKeys:
 				return False
 
 		return True

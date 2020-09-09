@@ -146,7 +146,7 @@ class Scores2Indata():
 			lines = file.readlines()		
 			file.close()
 		except IOError:
-			print "Error: can\'t find file or read data"
+			print("Error: can\'t find file or read data")
 			
 		#1  Title Card_________________________________
 		self.projectName = lines[0].replace("\n","")

@@ -119,10 +119,10 @@ class Scores1Results(object):
 
 			nameTags = ["heave","pitch","sway","yaw","roll"]
 			
-			if not self.waveSpectras[spectrum].responses.has_key(speed):
+			if speed not in self.waveSpectras[spectrum].responses:
 				self.waveSpectras[spectrum].responses[speed] = {}
 
-			if not self.waveSpectras[spectrum].responses[speed].has_key(waveDirection):
+			if waveDirection not in self.waveSpectras[spectrum].responses[speed]:
 				self.waveSpectras[spectrum].responses[speed][waveDirection] = {}
 
 			colCount = 1

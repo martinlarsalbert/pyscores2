@@ -1,13 +1,13 @@
 from PyQt4.QtCore import *
 import PyQt4.QtGui as QtGui
-import scores2Indata
+from . import scores2Indata
 import os.path
-import runScores2
-import resultGUI
-import waveSpectrumGUI
+from . import runScores2
+from . import resultGUI
+from . import waveSpectrumGUI
 import copy
-import waveSpectrum
-import XMLHydrostatics
+from . import waveSpectrum
+from . import XMLHydrostatics
 
 class Widget(QtGui.QWidget):
 	def __init__(self,parent=None):
@@ -568,7 +568,7 @@ class MainWindow(QtGui.QMainWindow):
 								waveSpectrum.results = self.resultWidget.scoresFile.irregularResults[spectrumIndex]						
 								
 								#Insert this result into the GUI:
-								for item,no in self.waveSpectrumWidget.spectrumItemDict.iteritems():
+								for item,no in self.waveSpectrumWidget.spectrumItemDict.items():
 									if no == counter2:
 										self.waveSpectrumWidget.addResult(item,waveSpectrum,'ScoresII Result')
 																
@@ -737,7 +737,7 @@ class ConditionDialog(QtGui.QDialog):
 		#Combo box:
 		self.conditionsComboBox = QtGui.QComboBox(parent = self)
 				
-		for condition in self.hydrostatics.conditions.itervalues():
+		for condition in self.hydrostatics.conditions.values():
 			self.conditionsComboBox.addItem(condition.Name)
 			
 		self.grid.addWidget(self.conditionsComboBox,rowCounter,1,1,1)
