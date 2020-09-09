@@ -30,3 +30,7 @@ def test_get_result_for_one_speed_and_wave(scores_file):
 def test_get_result_for_all(scores_file):
     df = scores_file.get_result()
     a = 1
+
+def test_get_roll_damping_all(scores_file):
+    df = scores_file.get_roll_damping()
+    a = 1

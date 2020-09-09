@@ -233,6 +233,23 @@ class OutputFile():
 
         return df
 
+    def get_roll_damping(self):
+        df = pd.DataFrame()
+
+        for speed, results_speed in self.results.items():
+            for wave_direction, results_wave_direction in results_speed.items():
+                assert isinstance(results_wave_direction,Result)
+                s = pd.Series()
+                s['speed']=speed
+                s['wave_direction']=wave_direction
+                s['calculated_wave_damping_in_roll']=results_wave_direction.calculated_wave_damping_in_roll
+                s['critical_wave_damping_in_roll'] = results_wave_direction.critical_wave_damping_in_roll
+                s['natural_roll_frequency'] = results_wave_direction.natural_roll_frequency
+                s['roll_damping_ratio'] = results_wave_direction.roll_damping_ratio
+                df=df.append(s, ignore_index=True)
+
+        return df
+
     def getGeometry(self):
         #This function reads the geometry definition matrix in the beginning av the file:
 
