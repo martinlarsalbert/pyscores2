@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as etree
-from pyscores2 import scores2Indata
+from pyscores2 import indata
 
 
 class Parser(object):
@@ -39,7 +39,7 @@ class Parser(object):
 		else:
 			raise ValueError('Not a valid XML file with hydrostatics data')
 
-	def convertToScores2Indata(self,tempIndata=scores2Indata.Scores2Indata(),conditionName=None):
+	def convertToScores2Indata(self, tempIndata=indata.Indata(), conditionName=None):
 
 			if not conditionName in self.conditions:
 				ValueError('condition: %s does not exist in file' % conditionName)

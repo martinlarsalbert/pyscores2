@@ -1,7 +1,7 @@
 from PyQt4.QtCore import *
 import PyQt4.QtGui as QtGui
 import PyQt4.QtCore as QtCore
-from . import scores2Indata
+from . import indata
 import os.path
 from . import scorseFileParser
 import numpy as np

@@ -9,8 +9,15 @@ def calculation(tmpdir):
 
 
 def test_run(calculation):
-
     calculation.run()
 
+def test_get_result_no_run(calculation):
+    with pytest.raises(ValueError):
+        calculation.getResult()
+
+def test_get_result(calculation):
+    calculation.run()
+    added_resistance_RAOs = calculation.getResult()
+    assert added_resistance_RAOs[181][0].responses == 0.975603955801746
 
 

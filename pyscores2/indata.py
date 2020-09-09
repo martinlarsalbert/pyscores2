@@ -1,7 +1,7 @@
 #This module can open and save indata files for ScoresII
 import numpy as np
 
-class Scores2Indata():
+class Indata():
 	def __init__(self):
 		
 		self.cScores = []
@@ -244,15 +244,16 @@ class Scores2Indata():
 		#13 Run Control card___________________________		
 		#A bit funky options on this one, please see the manual...
 		rowCounter += 1
-		values							= lines[rowCounter].split()
+		line = lines[rowCounter]
+		values = line.split()
 		
 		if self.runOptions["ID"].getValue() == 0:
 			#In regular waves frequency is given as wave length:
 			#Values are [lambda]
 			#Lambda [m] --> omega [rad/s]
-			self.waveFrequenciesMin			= sqrt(2*np.pi*self.g / float(values[1]))
-			self.waveFrequenciesMax			= sqrt(2*np.pi*self.g /float(values[2]))
-			self.waveFrequenciesIncrement	= sqrt(2*np.pi*self.g /float(values[3]))
+			self.waveFrequenciesMin			= np.sqrt(2*np.pi*self.g / float(values[1]))
+			self.waveFrequenciesMax			= np.sqrt(2*np.pi*self.g /float(values[2]))
+			self.waveFrequenciesIncrement	= np.sqrt(2*np.pi*self.g /float(values[3]))
 		else:
 			#Values are [rad/s]
 			#omega [rad/s] --> omega [rad/s]
@@ -352,7 +353,7 @@ class Scores2Indata():
 
 		self.lines = lines
 	
-	def save(self,indataPath,waveSpectrums=None):
+	def save(self,indataPath,waveSpectrums=[]):
 		self.indataPath = str(indataPath)
 
 		try:
@@ -362,10 +363,7 @@ class Scores2Indata():
 
 		#Update the number of wave spectra:
 		if self.runOptions["ID"].getValue() == 0:
-			if waveSpectrums != None:
-				self.runOptions["ID"].setValue(len(waveSpectrums))
-			else: 
-				self.runOptions["ID"].setValue(0)		
+			self.runOptions["ID"].setValue(len(waveSpectrums))
 
 		#1  Title Card_________________________________
 		file.write("%s\n" % self.projectName)
@@ -446,7 +444,7 @@ class Scores2Indata():
 			waveFrequenciesMax			= self.waveFrequenciesMax
 			waveFrequenciesIncrement	= self.waveFrequenciesIncrement
 		
-		file.write("1.0       %-10.4f%-10.4f%-10.4f%-10.4f%-10.4f%-10.4f\n" % (waveFrequenciesMin,waveFrequenciesMax,waveFrequenciesIncrement,self.speedMin*1.852/3.6,self.speedMax*1.852/3.6,self.speedIncrement*1.852/3.6))
+		file.write("1.0       %-10.2f%-10.2f%-10.2f%-10.2f%-10.4f%-10.4f\n" % (waveFrequenciesMin,waveFrequenciesMax,waveFrequenciesIncrement,self.speedMin*1.852/3.6,self.speedMax*1.852/3.6,self.speedIncrement*1.852/3.6))
 
 		#14 Roll damping card__________________________			
 		#"This card is used only if the degrees of freedom option control tag (IE) is 1 or 2 inticating lateral plane motions calculations are included."

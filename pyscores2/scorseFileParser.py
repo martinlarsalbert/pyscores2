@@ -10,7 +10,7 @@ from . import RAO
 
 class scorseFileClass():
 
-	def __init__(self,filePath=None):
+	def __init__(self,filePath):
 
 		self.filePath = filePath
 		self.results = {}
@@ -22,14 +22,9 @@ class scorseFileClass():
 		
 	def loadFile(self):
 		
-		try:
-			file = open(self.filePath,mode='r')
-		except IOError as e:
-			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-		
-		str = file.read()			
-		file.close()
-		
+		with open(self.filePath,mode='r') as file:
+			str = file.read()
+
 		#This one can be used to find when certain parts of data ends.
 		self.itemSeparator = str.split('\n')[0]
 		
@@ -55,7 +50,7 @@ class scorseFileClass():
 
 		for searchResult in searchResults[1:]:  			
 
-			result = resultClass(searchResult,self.itemSeparator)
+			result = Result(searchResult, self.itemSeparator)
 			irregularResults = IrregularResults(searchResult,self.itemSeparator)
 						
 			speed = result.speed
@@ -216,9 +211,9 @@ class scorseFileClass():
 
 		#Building a 2d dioctionary addedResistanceRAOs[speed][waveAngle] containing RAO class instances
 		addedResistanceRAOs = {}
-		for speed in self.results:
+		for speed in self.results.values():
 			tempDictionary = {}
-			for waveDirection in speed:
+			for waveDirection in speed.values():
 				speed = waveDirection.speed
 				waveAngle = waveDirection.waveAngle
 				
@@ -285,7 +280,7 @@ class geometryClass():
 		
 		self.B = np.max(self.beams)
 
-class resultClass():
+class Result():
 
 	def __init__(self,str,itemSeparator):
 		self.str = str
@@ -294,30 +289,30 @@ class resultClass():
 
 	def parseString(self):
 				
-		#searchResult = re.search("NATURAL ROLL FREQUENCY =([^\r,^\n]*)",self.str)
-		#if searchResult != None:
-		#	self.naturalRollFrequency = float(searchResult.group(1))
-		#else:
-		#	self.naturalRollFrequency = None
-		#
-		#
-		#searchResult = re.search("CALCULATED WAVE DAMPING IN ROLL =([^\r,^\n]*)",self.str)
-		#if searchResult != None:
-		#	self.calcualtedWaveDampingInRoll = float(searchResult.group(1))
-		#else:
-		#	self.calcualtedWaveDampingInRoll = None
-		#
-		#searchResult = re.search("CRITICAL VALUE FOR DAMPING IN ROLL =([^\r,^\n]*)",self.str)
-		#if searchResult != None:
-		#	self.criticalWaveDampingInRoll = float(searchResult.group(1))
-		#else:
-		#	self.criticalWaveDampingInRoll = None
-		#
-		#searchResult = re.search("ROLL DAMPING RATIO([^\r,^\n]*)",self.str)
-		#if searchResult != None:
-		#	self.rollDampingRatio = float(searchResult.group(1))
-		#else:
-		#	self.rollDampingRatio = None
+		searchResult = re.search("NATURAL ROLL FREQUENCY =([^\r,^\n]*)",self.str)
+		if searchResult != None:
+			self.natural_roll_frequency = float(searchResult.group(1))
+		else:
+			self.natural_roll_frequency = None
+		
+		
+		searchResult = re.search("CALCULATED WAVE DAMPING IN ROLL =([^\r,^\n]*)",self.str)
+		if searchResult != None:
+			self.calculated_wave_damping_in_roll = float(searchResult.group(1))
+		else:
+			self.calculated_wave_damping_in_roll = None
+		
+		searchResult = re.search("CRITICAL VALUE FOR DAMPING IN ROLL =([^\r,^\n]*)",self.str)
+		if searchResult != None:
+			self.critical_wave_damping_in_roll = float(searchResult.group(1))
+		else:
+			self.critical_wave_damping_in_roll = None
+		
+		searchResult = re.search("ROLL DAMPING RATIO([^\r,^\n]*)",self.str)
+		if searchResult != None:
+			self.roll_damping_ratio = float(searchResult.group(1))
+		else:
+			self.roll_damping_ratio = None
 			
 		searchResult = re.search("SPEED =([^W]*)",self.str)
 		if searchResult != None:

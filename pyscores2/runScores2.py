@@ -75,7 +75,15 @@ class Calculation ():
 		shutil.move(self.standardIndataFile, self.indata_path)
 		shutil.move('TDPFIL',self.TDPFIL_path)
 
+	@property
+	def is_successfull_run(self):
+		return os.path.exists(self.outDataPath)
+
+
 	def getResult(self):
+
+		if not self.is_successfull_run:
+			raise ValueError('Please run a successfull calculation first')
 
 		self.scoresFile = scorseFileParser.scorseFileClass(self.outDataPath)
 
@@ -83,12 +91,13 @@ class Calculation ():
 		self.bystromCorrection()
 
 		self.addedResistanceRAOs = self.scoresFile.getAddedResistanceRAOs(constants.rho,self.scoresFile.geometry.B,self.scoresFile.geometry.Lpp)
+		return self.addedResistanceRAOs
 
 	def bystromCorrection(self):
 
 		#Apply bystrom correction to all results:
-		for results in self.scoresFile.results:
-			for result in results:
+		for results in self.scoresFile.results.values():
+			for result in results.values():
 				result.addedResistance.bystromCorrection(constants.rho,self.scoresFile.geometry.B,self.scoresFile.geometry.Lpp)
 	
 	def calculateAddedResistanceInIrregularWaves(self,Tz):

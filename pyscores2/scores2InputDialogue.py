@@ -1,6 +1,6 @@
 from PyQt4.QtCore import *
 import PyQt4.QtGui as QtGui
-from . import scores2Indata
+from . import indata
 import os.path
 from . import runScores2
 from . import resultGUI
@@ -344,7 +344,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.undoIndex = 0
 
 		#Define an instance of the scoresII indata class:
-		self.scores2Indata = scores2Indata.Scores2Indata()
+		self.scores2Indata = indata.Indata()
 		self.scores2IndataList.append(self.scores2Indata)
 		
 		self.w = Widget(self)
@@ -457,7 +457,7 @@ class MainWindow(QtGui.QMainWindow):
 		if os.path.exists(fname):
 						
 			#Append this indata to the undo\redo list:
-			tempIndata = scores2Indata.Scores2Indata()
+			tempIndata = indata.Indata()
 			tempIndata.open(fname)
 			
 			self.w.updateIndata(tempIndata)
