@@ -7,16 +7,13 @@ from . import constants
 from . import RAO
 import re
 import pyscores2
+import pyscores2.indata
 
 class Calculation ():
 
-	def __init__(self,indataPath,outDataDirectory):
+	def __init__(self,outDataDirectory):
 						
-		head,tail = os.path.split(indataPath)
-		
-		self.indataPath = indataPath
-		self.indataDirectory = head
-		self.indataFileName = os.path.splitext(tail)[0] 
+
 
 		self.outDataDirectory = outDataDirectory
 
@@ -24,12 +21,6 @@ class Calculation ():
 		self.standardOutdataFile = "SCORES.OUT"
 		self.standardCoeffFile = "COEFF.OUT"
 		self.exe_file_path = pyscores2.exe_file_path
-
-		self.outDataPath = os.path.join(self.outDataDirectory, self.indataFileName + ".out")
-		self.indata_path = os.path.join(self.outDataDirectory, self.indataFileName + ".in")
-		self.coeffPath = os.path.join(self.outDataDirectory, self.indataFileName + "-COEFF.out")
-		self.TDPFIL_path = os.path.join(self.outDataDirectory, "TDPFIL")
-
 
 		self.errorDescriptions = {}
 		self.errorDescriptions["unknown"] = r'Unknown error'
@@ -40,24 +31,45 @@ class Calculation ():
 		self.errorDescriptions["  4"] = r'Error in range or increment of variable conditions'
 		self.errorDescriptions["  5"] = r'TDP calculation incomplete'
 		self.errorDescriptions["  6"] = r'TDP file label does not equal title data, col. 1-30'
-		
 
-	def run(self):
+		self.outDataPath = ''
 
-		#Remove old indata and result files:
+	def run(self, indata_file_path=None, indata=None):
+		"""
+		run Scores2
+		You can run it either by specifying the indata file path or provide an Indata object.
+		:param indata_file_path: path to the indata file
+		:param indata: pyscores2.indata.Indata object
+		:return:
+		"""
+
+		# Remove old indata and result files:
 		if os.path.exists(self.standardIndataFile):
 			os.remove(self.standardIndataFile)
-		
+
 		if os.path.exists(self.standardOutdataFile):
 			os.remove(self.standardOutdataFile)
 
 		if os.path.exists(self.standardCoeffFile):
 			os.remove(self.standardCoeffFile)
 
-		#Copy and rename indatafile:
-		try : shutil.copyfile(self.indataPath,self.standardIndataFile)
-		except:
-			raise
+		if indata_file_path is None:
+			assert isinstance(indata, pyscores2.indata.Indata)
+			self.indataFileName = indata.projectName
+			indata.save(indataPath=self.standardIndataFile)
+
+		else:
+			assert isinstance(indata_file_path,str)
+			head, tail = os.path.split(indata_file_path)
+			self.indataFileName = os.path.splitext(tail)[0]
+			# Copy and rename indatafile:
+			shutil.copyfile(indata_file_path, self.standardIndataFile)
+
+		self.outDataPath = os.path.join(self.outDataDirectory, self.indataFileName + ".out")
+		self.indata_path = os.path.join(self.outDataDirectory, self.indataFileName + ".in")
+		self.coeffPath = os.path.join(self.outDataDirectory, self.indataFileName + "-COEFF.out")
+
+		self.TDPFIL_path = os.path.join(self.outDataDirectory, "TDPFIL")
 
 		#run Scores2:
 		print("Running Scores2 for %s" % self.indataFileName)
