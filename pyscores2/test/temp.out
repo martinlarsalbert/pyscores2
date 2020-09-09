@@ -1,4 +1,4 @@
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0OPTION CONTROL TAGS -  A  B  C  D  E  F  G  H  I  JK  L  M  N  
                         1  0  0  0  1  0  0  0  0  1  2  0  0  0         NO. OF STATIONS = 20
 0BASIC INPUT DATA
@@ -34,7 +34,7 @@
 0LONG. C.B. =   8.675 (FWD. OF MIDSHIPS)      DISPL.(VOL.) =  338953.22
 +                                                                          GM =    1.843
  VCG =    23.000     VCB =    11.606
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 
 0CONDITIONAL INPUT DATA CARD PRINT OUT
 
@@ -84,7 +84,7 @@
  P SERIES -  -0.4738E+01  -0.1409E+00  -0.2188E+00   0.9313E-01   0.1473E-01  -0.1699E-01  -0.2262E-03   0.4075E-02  -0.2161E-02
  Q SERIES -  -0.1511E+03  -0.4489E+01  -0.6987E+01   0.2977E+01   0.4663E+00  -0.5392E+00  -0.8179E-02   0.1303E+00  -0.6917E-01
  NO =  0.2478E+00, MO =  0.5291E+00, XR = -0.2727E+00, YR = -0.8913E+01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0          TWO-DIMENSIONAL SECTION PROPERTIES
     FREQ.
     PARAM. A-PRIME(33)  A(BAR)SQ.    M-SUB(S)    N-SUB(S)    M(S.PHI)    N(S.PHI)    I-SUB(R)    N-SUB(R)   F-SUB(R.S)  N-SUB(R.S) 
@@ -634,7 +634,7 @@
     7.1000  0.1742E+02  0.4617E+01  0.1583E+01  0.9863E+00 -0.2160E+02 -0.7088E+01  0.2216E+03  0.3474E+02 -0.1585E+02 -0.5829E+01
     8.7000  0.1771E+02  0.4233E+01  0.1634E+01  0.7694E+00 -0.2247E+02 -0.5242E+01  0.2293E+03  0.2377E+02 -0.1635E+02 -0.4320E+01
    10.7000  0.1794E+02  0.3865E+01  0.1682E+01  0.6534E+00 -0.2320E+02 -0.2809E+01  0.2359E+03  0.1739E+02 -0.1681E+02 -0.3285E+01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  180.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -643,7 +643,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    1.51472    502.996    1.5401  0.0132  -128.2  0.0269   -87.9  0.0232    89.5
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  180.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -652,7 +652,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000    1.51472    502.996    1.5401   -0.224E+00   -0.142E-04
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0 SPEED = 93.2410      WAVE ANGLE =  210.00 DEG.
 
 
@@ -662,7 +662,7 @@
  CRITICAL VALUE FOR DAMPING IN ROLL =     0.5052E+07
 
  ROLL DAMPING RATIO                        0.6450E-01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  210.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -671,7 +671,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    1.35868    502.996    1.5401  0.0225   -27.1  0.0529   -83.1  0.0292    89.5
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  210.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -680,7 +680,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000    1.35868    502.996    1.5401   -0.468E+00    0.343E+02
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  210.00 DEG.
 +                                                   LATERAL PLANE RESPONSES
 
@@ -689,7 +689,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    1.35868    502.996    1.5401  0.0271  -101.2  0.0156     0.8  0.0051  -120.4
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0 SPEED = 93.2410      WAVE ANGLE =  240.00 DEG.
 
 
@@ -699,7 +699,7 @@
  CRITICAL VALUE FOR DAMPING IN ROLL =     0.5052E+07
 
  ROLL DAMPING RATIO                        0.1648E-01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  240.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -708,7 +708,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    0.93236    502.996    1.5401  0.4900    10.2  0.2873   -69.9  0.0487    90.5
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  240.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -717,7 +717,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000    0.93236    502.996    1.5401   -0.143E+02    0.256E+03
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  240.00 DEG.
 +                                                   LATERAL PLANE RESPONSES
 
@@ -726,7 +726,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    0.93236    502.996    1.5401  0.1214  -108.6  0.0208    48.9  0.0178    -2.9
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0 SPEED = 93.2410      WAVE ANGLE =  270.00 DEG.
 
 
@@ -736,7 +736,7 @@
  CRITICAL VALUE FOR DAMPING IN ROLL =     0.5052E+07
 
  ROLL DAMPING RATIO                        0.2976E-01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  270.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -745,7 +745,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    0.35000    502.996    1.5401  0.9880   177.7  0.0279    99.1  0.0003  -100.8
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  270.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -754,7 +754,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000    0.35000    502.996    1.5401    0.132E+00   -0.446E+03
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  270.00 DEG.
 +                                                   LATERAL PLANE RESPONSES
 
@@ -763,7 +763,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000    0.35000    502.996    1.5401  0.6732   -85.9  0.0363   167.3  0.7412   -68.8
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0 SPEED = 93.2410      WAVE ANGLE =  300.00 DEG.
 
 
@@ -773,7 +773,7 @@
  CRITICAL VALUE FOR DAMPING IN ROLL =     0.5052E+07
 
  ROLL DAMPING RATIO                       -0.2364E-01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  300.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -782,7 +782,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000   -0.23236    502.996    1.5401  0.7057  -174.7  0.1997   -85.1  0.7391   -90.6
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  300.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -791,7 +791,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000   -0.23236    502.996    1.5401   -0.250E+02   -0.964E+03
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  300.00 DEG.
 +                                                   LATERAL PLANE RESPONSES
 
@@ -800,7 +800,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000   -0.23236    502.996    1.5401  1.3841   -86.3  0.3198  -176.1  1.1955   144.9
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0 SPEED = 93.2410      WAVE ANGLE =  330.00 DEG.
 
 
@@ -810,7 +810,7 @@
  CRITICAL VALUE FOR DAMPING IN ROLL =     0.5052E+07
 
  ROLL DAMPING RATIO                       -0.2276E-01
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  330.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -819,7 +819,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000   -0.65868    502.996    1.5401  3.3920  -132.8  1.0542   -56.8  0.1151   -93.6
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  330.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 
@@ -828,7 +828,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                                 AMP        AMP
     0.35000   -0.65868    502.996    1.5401    0.126E+03   -0.510E+04
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  330.00 DEG.
 +                                                   LATERAL PLANE RESPONSES
 
@@ -837,7 +837,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000   -0.65868    502.996    1.5401  0.0591  -139.2  0.0353  -169.1  0.1247   -94.1
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  360.00 DEG.
 +                                                   VERTICAL PLANE RESPONSES
 
@@ -846,7 +846,7 @@
   F R E Q U E N C I E S   LENGTH   LENGTH  
 +                                             AMPL.  PHASE    AMPL.  PHASE    AMPL.  PHASE 
     0.35000   -0.81472    502.996    1.5401  1.6893   -12.0  0.6588    67.8  0.0856   -90.8
-1DSIC-VLCC-optimisation-2014                                                     
+1Test ship
 0SPEED =  93.2410      WAVE ANGLE =  360.00 DEG.
 +                                                    ADDED RESISTANCE AND MOMENT
 

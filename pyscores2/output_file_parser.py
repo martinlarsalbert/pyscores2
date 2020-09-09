@@ -8,7 +8,7 @@ from . import waveSpectrum
 
 from . import RAO
 
-class scorseFileClass():
+class OutputFile():
 
 	def __init__(self,filePath):
 
@@ -622,7 +622,7 @@ if __name__ == "__main__":
 			print('Error: The indataDirectory does not exist.')
 			sys.exit(1)
 	
-		scoresFile = scorseFileClass(scoresFilePath)
+		scoresFile = OutputFile(scoresFilePath)
 		a=1
 
 	else:

@@ -1,9 +1,9 @@
 import pytest
-from pyscores2.scorseFileParser import scorseFileClass
+from pyscores2.output_file_parser import OutputFile
 
 def test_load_file():
 
-    scores_file = scorseFileClass(filePath='temp.out')
+    scores_file = OutputFile(filePath='temp.out')
     assert hasattr(scores_file,'results')
     assert 181 in scores_file.results
     assert 0 in scores_file.results[181]
@@ -11,7 +11,7 @@ def test_load_file():
 
 @pytest.fixture
 def scores_file():
-    yield scorseFileClass(filePath='temp.out')
+    yield OutputFile(filePath='temp.out')
 
 def test_load_roll_damping(scores_file):
 

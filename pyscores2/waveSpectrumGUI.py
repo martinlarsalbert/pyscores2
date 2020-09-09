@@ -3,7 +3,7 @@ import PyQt4.QtGui as QtGui
 import PyQt4.QtCore as QtCore
 from . import indata
 import os.path
-from . import scorseFileParser
+from . import output_file_parser
 import numpy as np
 from . import plotWindow
 import scipy.io
