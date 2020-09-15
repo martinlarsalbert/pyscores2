@@ -630,7 +630,7 @@ class MainWindow(QtGui.QMainWindow):
                         counter2 += 1
 
             else:
-                errorCode, errorDescription = calculation.parseError()
+                errorCode, errorDescription = calculation.parse_error()
 
                 for cScores in self.scores2Indata.cScores:
                     if cScores > 0.99:

@@ -35,3 +35,5 @@ def test_get_result_no_run(calculation):
 def test_get_result(calculation):
     calculation.run(indata_file_path=pyscores2.test.indata_path)
     added_resistance_RAOs = calculation.getResult()
+    errorCode, errorDescription = calculation.parse_error()
+    a = 1

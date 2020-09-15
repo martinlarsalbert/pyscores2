@@ -38,12 +38,13 @@ class Calculation():
 
         self.outDataPath = ''
 
-    def run(self, indata_file_path=None, indata=None):
+    def run(self, indata_file_path=None, indata=None, check_errors=True):
         """
 		run Scores2
 		You can run it either by specifying the indata file path or provide an Indata object.
 		:param indata_file_path: path to the indata file
 		:param indata: pyscores2.indata.Indata object
+		:param check_errors: look for error messages in the result file.
 		:return:
 		"""
 
@@ -95,6 +96,11 @@ class Calculation():
         shutil.move(self.standardIndataFile, self.indata_path)
         shutil.move('TDPFIL', self.TDPFIL_path)
 
+        if check_errors:
+            errorCode, errorDescription = self.parse_error()
+            if not errorCode=='unknown':
+                raise ValueError(errorDescription)
+
     @property
     def is_successfull_run(self):
         return os.path.exists(self.outDataPath)
@@ -134,9 +140,9 @@ class Calculation():
 
         return irregularSea.addedResistance
 
-    def parseError(self):
+    def parse_error(self):
 
-        with open(self.standardOutdataFile, 'r') as file:
+        with open(self.outDataPath, 'r') as file:
             s = file.read()
 
         result = re.search("ERROR NO.(.*)", s)
@@ -169,7 +175,7 @@ class Calculation():
 
     def parseCalculatedDisplacement(self):
 
-        with open(self.standardOutdataFile, 'r') as file:
+        with open(self.outDataPath, 'r') as file:
             s = file.read()
 
         result = re.search("DISPL.\(VOL.\) =(.*)", s)
@@ -183,7 +189,7 @@ class Calculation():
 
     def parseCalculatedLCB(self):
 
-        with open(self.standardOutdataFile, 'r') as file:
+        with open(self.outDataPath, 'r') as file:
             s = file.read()
 
         result = re.search("LONG. C.B. =([^\(]*)", s)
@@ -197,7 +203,7 @@ class Calculation():
 
     def parseGM(self):
 
-        with open(self.standardOutdataFile, 'r') as file:
+        with open(self.outDataPath, 'r') as file:
             s = file.read()
 
         result = re.search("GM =(.*)", s)
