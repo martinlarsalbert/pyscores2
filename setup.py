@@ -7,21 +7,21 @@ import os
 from setuptools import find_packages, setup
 
 # get __version__ from _version.py
-ver_file = os.path.join('rolldecayestimators', '_version.py')
+ver_file = os.path.join('pyscores2', '_version.py')
 with open(ver_file) as f:
     exec(f.read())
 
-DISTNAME = 'rolldecay-estimators'
-DESCRIPTION = 'A template for scikit-learn compatible packages.'
-with codecs.open('README.rst', encoding='utf-8-sig') as f:
+DISTNAME = 'pyscores2'
+DESCRIPTION = 'Python API to ship strip theory code Scores2'
+with codecs.open('README.md', encoding='utf-8-sig') as f:
     LONG_DESCRIPTION = f.read()
 MAINTAINER = 'Martin Alexandersson'
-MAINTAINER_EMAIL = 'vighneshbirodkar@nyu.edu, g.lemaitre58@gmail.com'
-URL = 'https://github.com/scikit-learn-contrib/project-template'
-LICENSE = 'new BSD'
-DOWNLOAD_URL = 'https://github.com/scikit-learn-contrib/project-template'
+MAINTAINER_EMAIL = 'maa@sspa.se'
+URL = 'https://github.com/martinlarsalbert/pyscores2'
+LICENSE = 'GNU GPLv3'
+DOWNLOAD_URL = 'https://github.com/martinlarsalbert/pyscores2'
 VERSION = __version__
-INSTALL_REQUIRES = ['numpy', 'scipy', 'scikit-learn','pandas','sympy','matplotlib','dill']
+INSTALL_REQUIRES = ['pandas','matplotlib','scipy']
 CLASSIFIERS = ['Intended Audience :: Science/Research',
                'Intended Audience :: Developers',
                'License :: OSI Approved',
@@ -45,12 +45,11 @@ EXTRAS_REQUIRE = {
         'sphinx-gallery',
         'sphinx_rtd_theme',
         'numpydoc',
-        'matplotlib'
     ]
 }
 
 package_data= {
-          "rolldecayestimators": ["*.csv"],
+          "pyscores2": [r"fortran/scores2.exe"],
       }
 
 setup(name=DISTNAME,
