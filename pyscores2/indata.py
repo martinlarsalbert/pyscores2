@@ -5,37 +5,29 @@ import numpy as np
 class Indata():
     def __init__(self):
 
-        self.cScores = []
-        self.bs = []
-        self.ts = []
-        self.lpp = 0.0
-        self.draught = 0.0
-        self.displacement = 0.0
-        self.lcb = 0.0
+        self.cScores = []                       # [-]
+        self.bs = []                            # [m]
+        self.ts = []                            # [m]
+        self.lpp = 0.0                          # [m]
+        self.draught = 0.0                      # [m]
+        self.displacement = 0.0                 # [m3]
+        self.lcb = 0.0                          # From AP [m]
         self.projectName = "New Project"
-        self.speedMin = 0.0
-        self.speedMax = 0.0
-        self.speedIncrement = 0.0
-        self.waveDirectionMin = 0.0
-        self.waveDirectionMax = 0.0
-        self.waveDirectionIncrement = 0.0
-        self.waveFrequenciesMin = 0.2
-        self.waveFrequenciesMax = 2.0
-        self.waveFrequenciesIncrement = 0.05
-        self.kxx = 0.0
-        self.kyy = 0.0
-        self.rho = 1025.0
-        self.g = 9.80665
-        self.zcg = 0.0
-        self.partOfCriticalRollDamping = 0.0
-
-        self.speedMin = 0.0
-        self.speedMax = 10.0
-        self.speedIncrement = 1.0
-
-        self.waveDirectionMin = 0.0
-        self.waveDirectionMax = 180.0
-        self.waveDirectionIncrement = 30.0
+        self.speedMin = 0.0                     # [kts]
+        self.speedMax = 10.0                    # [kts]
+        self.speedIncrement = 1.0               # [kts]
+        self.waveDirectionMin = 0.0             # [deg]
+        self.waveDirectionMax = 180.0           # [deg]
+        self.waveDirectionIncrement = 30.0      # [deg]
+        self.waveFrequenciesMin = 0.2           # [rad/s]
+        self.waveFrequenciesMax = 2.0           # [rad/s]
+        self.waveFrequenciesIncrement = 0.05    # [rad/s]
+        self.kxx = 0.0                          # [m]
+        self.kyy = 0.0                          # [m]
+        self.rho = 1025.0                       # [kg/m3]
+        self.g = 9.80665                        # [m/s^2]
+        self.zcg = 0.0                          # [m]
+        self.partOfCriticalRollDamping = 0.0    #[-]
 
         self.lines = ""
 
@@ -233,7 +225,7 @@ class Indata():
         values = lines[rowCounter].split()
         self.kyy = float(values[0])
         faktor = float(values[1])
-        self.lcb = (self.lpp / 2 - faktor) / self.lpp * 100
+        self.lcb = -faktor+self.lpp/2
 
         # 9  Sectional mass properties__________________
         # ...
@@ -429,7 +421,7 @@ class Indata():
 
         # 8  Longitudinal total mass properties card____
         # "This card is used only if the moment option tag IB is 0..."
-        faktor = self.lpp / 2 - self.lcb / 100 * self.lpp
+        faktor = -(self.lcb-self.lpp/2)
         file.write("%-10.2f%-10.2f\n" % (self.kyy, faktor))
 
         # 9  Sectional mass properties__________________

@@ -157,12 +157,12 @@ class Calculation():
             errorDescription = 'unknown error'
 
         if errorCode == "  2":
-            calculatedDisplacement = self.parseCalculatedDisplacement()
+            calculatedDisplacement = self.parse_calculated_displacement()
             if calculatedDisplacement != None:
                 errorDescription += " Calculated displacement = %f m3" % calculatedDisplacement
 
         if errorCode == "  3":
-            calculatedLCB = self.parseCalculatedLCB()
+            calculatedLCB = self.parse_calculated_LCB()
             if calculatedLCB != None:
                 errorDescription += " Calculated LCB = %f m (FWD. OF MIDSHIPS)" % calculatedLCB
 
@@ -173,12 +173,12 @@ class Calculation():
 
         return errorCode, errorDescription
 
-    def parseCalculatedDisplacement(self):
+    def parse_calculated_displacement(self):
 
         with open(self.outDataPath, 'r') as file:
             s = file.read()
 
-        result = re.search("DISPL.\(VOL.\) =(.*)", s)
+        result = re.search("DISPL. =([^G]*)", s)
 
         if result:
             displacement = float(result.group(1))
@@ -187,7 +187,7 @@ class Calculation():
 
         return displacement
 
-    def parseCalculatedLCB(self):
+    def parse_calculated_LCB(self):
 
         with open(self.outDataPath, 'r') as file:
             s = file.read()
