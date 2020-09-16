@@ -26,6 +26,13 @@ def test_run_from_file(calculation):
 def test_run_from_indata(calculation, indata):
     calculation.run(indata=indata)
 
+def test_run_from_indata2(calculation, indata):
+
+    indata.waveDirectionIncrement = 12
+    indata.waveDirectionMin = 2
+    indata.waveDirectionMax = 24
+
+    calculation.run(indata=indata)
 
 def test_get_result_no_run(calculation):
     with pytest.raises(ValueError):

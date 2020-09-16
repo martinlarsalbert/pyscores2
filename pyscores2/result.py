@@ -53,7 +53,8 @@ class Result():
         self.waveAngleScores = float(searchResult.group(1))
 
         #ScoresII uses wave angles that go the other way 90 deg is Stbd etc. The GUI expresses the results in MDL wave angles where 90 deg is port:
-        self.waveAngle = 360 - self.waveAngleScores
+        #self.waveAngle = 360 - self.waveAngleScores
+        self.waveAngle = self.waveAngleScores
 
         self.verticalPlaneResponses = verticalPlaneResponsesClass(
             self.str, self.itemSeparator)
