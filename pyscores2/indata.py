@@ -8,6 +8,7 @@ class Indata():
         self.cScores = []                       # [-]
         self.bs = []                            # [m]
         self.ts = []                            # [m]
+        self.zbars = []                         # [m]
         self.lpp = 0.0                          # [m]
         self.draught = 0.0                      # [m]
         self.displacement = 0.0                 # [m3]
@@ -27,7 +28,7 @@ class Indata():
         self.rho = 1025.0                       # [kg/m3]
         self.g = 9.80665                        # [m/s^2]
         self.zcg = 0.0                          # [m]
-        self.partOfCriticalRollDamping = 0.0    #[-]
+        self.partOfCriticalRollDamping = 0.0    # [-]
 
         self.lines = ""
 
@@ -195,10 +196,16 @@ class Indata():
             line = lines[rowCounter]
             values = line.split()
 
-            if len(values) == 3:
+            if (len(values) == 3) or (len(values) == 4):
+
                 self.bs.append(float(values[0]))
                 self.cScores.append(float(values[1]))
                 self.ts.append(float(values[2]))
+
+                if (len(values) == 3):
+                    self.zbars=list(np.zeros(len(self.cScores)))
+                else:
+                    self.zbars.append(float(values[3]))
             else:
                 break
 
@@ -206,6 +213,7 @@ class Indata():
         self.bs.reverse()
         self.cScores.reverse()
         self.ts.reverse()
+        self.zbars.reverse()
 
         # 5  Section Card_______________________________
         # (Needed only if close-fitted option IM > 0
@@ -401,13 +409,14 @@ class Indata():
         self.bs.reverse()
         self.cScores.reverse()
         self.ts.reverse()
-        for b, cScores, t in zip(self.bs, self.cScores, self.ts):
-            file.write("%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t))
+        for b, cScores, t, zbar in zip(self.bs, self.cScores, self.ts, self.zbars):
+            file.write("%-10.4f%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t, zbar))
 
         # Reverse it back...
         self.bs.reverse()
         self.cScores.reverse()
         self.ts.reverse()
+        self.zbars.reverse()
 
         # 5  Section Card_______________________________
         # (Needed only if close-fitted option IM > 0
