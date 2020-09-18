@@ -12,7 +12,7 @@ class Indata():
         self.lpp = 0.0                          # [m]
         self.draught = 0.0                      # [m]
         self.displacement = 0.0                 # [m3]
-        self.lcb = 0.0                          # From AP [m]
+        self.lcb = 0.0                          # From LPP/2 [m]
         self.projectName = "New Project"
         self.speedMin = 0.0                     # [kts]
         self.speedMax = 10.0                    # [kts]
@@ -58,19 +58,19 @@ class Indata():
             description=r"Hullform given at segment midpoint")
         self.runOptions["IA"].addOption(
             description=r"Hullform given at segment endpoint")
-        self.runOptions["IA"].setValue(1)
+        self.runOptions["IA"].set_value(1)
 
         self.runOptions["IB"] = RunOption(description=r"Mass & Moment")
         self.runOptions["IB"].addOption(
             description=r"Motion only, use ship total mass properties")
         self.runOptions["IB"].addOption(
             description=r"Motion only, use mass dist.")
-        self.runOptions["IB"].setValue(0)
+        self.runOptions["IB"].set_value(0)
 
         self.runOptions["IC"] = RunOption(description=r"Mass dist.")
         self.runOptions["IC"].addOption(description=r"Mass distribution")
         self.runOptions["IC"].addOption(description=r"Weight distribution")
-        self.runOptions["IC"].setValue(0)
+        self.runOptions["IC"].set_value(0)
 
         self.runOptions["ID"] = RunOption(description=r"Wave Spectra")
         self.runOptions["ID"].addOption(description=r"Regular Waves")
@@ -80,45 +80,45 @@ class Indata():
         self.runOptions["ID"].addOption(description=r"Tabulated")
         self.runOptions["ID"].addOption(description=r"Bretschneider")
         self.runOptions["ID"].addOption(description=r"Jonswap")
-        self.runOptions["ID"].setValue(0)
+        self.runOptions["ID"].set_value(0)
 
         self.runOptions["IE"] = RunOption(description=r"Degrees of freedom")
         self.runOptions["IE"].addOption(description=r"Vertical plane")
         self.runOptions["IE"].addOption(
             description=r"Vertical and Lateral plane")
         self.runOptions["IE"].addOption(description=r"Lateral plane only")
-        self.runOptions["IE"].setValue(0)
+        self.runOptions["IE"].set_value(1)
 
         self.runOptions["IF"] = RunOption(description=r"Directionality")
         self.runOptions["IF"].addOption(description=r"Uni-directional waves")
         self.runOptions["IF"].addOption(
             description=r"Cos-square wave spreading")
-        self.runOptions["IF"].setValue(0)
+        self.runOptions["IF"].set_value(0)
 
         self.runOptions["IG"] = RunOption(description=r"TDP File")
         self.runOptions["IG"].addOption(description=r"Generate TDP file")
         self.runOptions["IG"].addOption(description=r"Read TDP file")
-        self.runOptions["IG"].setValue(0)
+        self.runOptions["IG"].set_value(0)
 
         self.runOptions["IH"] = RunOption(description=r"Moment closure")
         self.runOptions["IH"].addOption(description=r"Supress closure calc")
         self.runOptions["IH"].addOption(
             description=r"Calc. and print out closure results")
-        self.runOptions["IH"].setValue(0)
+        self.runOptions["IH"].set_value(0)
 
         self.runOptions["II"] = RunOption(description=r"Output form")
         self.runOptions["II"].addOption(description=r"Dimensional")
         self.runOptions["II"].addOption(description=r"Non-dimensional")
-        self.runOptions["II"].setValue(0)
+        self.runOptions["II"].set_value(0)
 
         self.runOptions["IJ"] = RunOption(description=r"Torsion axis")
         self.runOptions["IJ"].addOption(description=r"Centre of gravity")
         self.runOptions["IJ"].addOption(description=r"Waterline")
-        self.runOptions["IJ"].setValue(0)
+        self.runOptions["IJ"].set_value(0)
 
         self.runOptions["N"] = RunOption(
             description=r"No. of equally spaced segments along the ship")
-        self.runOptions["N"].setValue(20)
+        self.runOptions["N"].set_value(20)
 
         self.runOptions["IK"] = RunOption(description=r"Roll damping")
         self.runOptions["IK"].addOption(
@@ -127,25 +127,25 @@ class Indata():
             description=r"Input empirical nonlinear damping")
         self.runOptions["IK"].addOption(
             description=r"Use program calculated nonlinear damping")
-        self.runOptions["IK"].setValue(0)
+        self.runOptions["IK"].set_value(0)
 
         self.runOptions["IL"] = RunOption(
             description=r"Use 3-D Damping correction factors heave & pitch")
         self.runOptions["IL"].addOption(description=r"No correction")
         self.runOptions["IL"].addOption(
             description=r"Use 3-D correction factors")
-        self.runOptions["IL"].setValue(0)
+        self.runOptions["IL"].set_value(0)
 
         self.runOptions["IM"] = RunOption(
             description=
             r"Total number of sections to be analyzed by close-fitted method")
-        self.runOptions["IM"].setValue(0)
+        self.runOptions["IM"].set_value(0)
 
         self.runOptions["NMOT"] = RunOption(description=r"Motion output")
-        self.runOptions["NMOT"].setValue(0)
+        self.runOptions["NMOT"].set_value(0)
 
         self.runOptions["NMOOR"] = RunOption(description=r"Moring option")
-        self.runOptions["NMOOR"].setValue(0)
+        self.runOptions["NMOOR"].set_value(0)
 
         self.accelerationPoints = []
 
@@ -178,7 +178,7 @@ class Indata():
         for tag in self.runOptionTags:
             partString = runOptionString[firstIndex:firstIndex + 2]
             value = intSpecial(partString)
-            self.runOptions[tag].setValue(value)
+            self.runOptions[tag].set_value(value)
             firstIndex += 2
 
         # 3  Length Card________________________________
@@ -386,7 +386,7 @@ class Indata():
 
         # Update the number of wave spectra:
         if self.runOptions["ID"].getValue() == 0:
-            self.runOptions["ID"].setValue(len(waveSpectrums))
+            self.runOptions["ID"].set_value(len(waveSpectrums))
 
         # 1  Title Card_________________________________
         file.write("%s\n" % self.projectName)
@@ -462,11 +462,13 @@ class Indata():
             # Values should be [lambda]
             # omega [rad/s] --> lambda [m]
             waveFrequenciesMin = 2 * np.pi * self.g / (
-                self.waveFrequenciesMin) ** 2
-            waveFrequenciesMax = 2 * np.pi * self.g / (
                 self.waveFrequenciesMax) ** 2
-            waveFrequenciesIncrement = 2 * np.pi * self.g / (
-                self.waveFrequenciesIncrement) ** 2
+            waveFrequenciesMax = 2 * np.pi * self.g / (
+                self.waveFrequenciesMin) ** 2
+
+            N=(self.waveFrequenciesMax - self.waveFrequenciesMin)/self.waveFrequenciesIncrement
+
+            waveFrequenciesIncrement = (waveFrequenciesMax - waveFrequenciesMin)/N
 
         else:
             # Values should be [1/T]
@@ -568,7 +570,7 @@ class RunOption(object):
         else:
             return self.value
 
-    def setValue(self, value=None):
+    def set_value(self, value=None):
         if len(self.alternatives) > 0:
             if type(value) == type(int()):
                 subAlternative = value

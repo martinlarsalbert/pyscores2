@@ -755,14 +755,14 @@ class OptionsDialog(QtGui.QDialog):
             inputItem = self.inputItems[optionID]
 
             if type(inputItem) == type(QtGui.QLineEdit()):
-                self.parent.scores2Indata.runOptions[optionID].setValue(
+                self.parent.scores2Indata.runOptions[optionID].set_value(
                     int(inputItem.text()))
             elif type(inputItem) == type(QtGui.QButtonGroup()):
                 counter = 0
                 for radioButton in inputItem.buttons():
                     if radioButton.isChecked():
                         self.parent.scores2Indata.runOptions[
-                            optionID].setValue(counter)
+                            optionID].set_value(counter)
                         break
                     counter += 1
 

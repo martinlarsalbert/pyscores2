@@ -114,13 +114,13 @@ class waveSpectrumWidget(QtGui.QDockWidget):
         #Update the spectrum flag (for ScoresII only):
         spectrumType = newSpectrum.getType()
         if spectrumType == 'ITTCSpectrum':
-            self.parent.scores2Indata.runOptions["ID"].setValue(
+            self.parent.scores2Indata.runOptions["ID"].set_value(
                 3)  # Note that this equals a Two parameter spectrum.
         elif spectrumType == 'JonswapSpectrum':
-            self.parent.scores2Indata.runOptions["ID"].setValue(6)
+            self.parent.scores2Indata.runOptions["ID"].set_value(6)
         #elif spectrumType == 'FileSpectrum':
         else:
-            self.parent.scores2Indata.runOptions["ID"].setValue(0)
+            self.parent.scores2Indata.runOptions["ID"].set_value(0)
 
         spectrumItem = self.addParent(self.spectrumsItem, 0, newSpectrum.name,
                                       None)
