@@ -210,10 +210,10 @@ class Indata():
                 break
 
         # The frames in ScoresII are counted from FP, but this GUI uses a traditional numbering from AP so the geomtry vectors have to be reversed.
-        self.bs.reverse()
-        self.cScores.reverse()
-        self.ts.reverse()
-        self.zbars.reverse()
+        self.bs=np.flipud(self.bs)
+        self.cScores=np.flipud(self.cScores)
+        self.ts=np.flipud(self.ts)
+        self.zbars=np.flipud(self.zbars)
 
         # 5  Section Card_______________________________
         # (Needed only if close-fitted option IM > 0
@@ -406,17 +406,19 @@ class Indata():
 
         # 4  Hull form cards____________________________
         # The frames in ScoresII are counted from FP, but this GUI uses a traditional numbering from AP so the geomtry vectors have to be reversed.
-        self.bs.reverse()
-        self.cScores.reverse()
-        self.ts.reverse()
+        self.bs=np.flipud(self.bs)
+        self.cScores=np.flipud(self.cScores)
+        self.ts=np.flipud(self.ts)
+        self.zbars=np.flipud(self.zbars)
+
         for b, cScores, t, zbar in zip(self.bs, self.cScores, self.ts, self.zbars):
             file.write("%-10.4f%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t, zbar))
 
         # Reverse it back...
-        self.bs.reverse()
-        self.cScores.reverse()
-        self.ts.reverse()
-        self.zbars.reverse()
+        self.bs=np.flipud(self.bs)
+        self.cScores=np.flipud(self.cScores)
+        self.ts=np.flipud(self.ts)
+        self.zbars=np.flipud(self.zbars)
 
         # 5  Section Card_______________________________
         # (Needed only if close-fitted option IM > 0
