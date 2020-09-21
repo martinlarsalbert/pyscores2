@@ -41,6 +41,9 @@ class OutputFile():
         #Read some geomtry stuff from the string:
         self.getGeometry()
 
+        # Read section coefficients:
+        self.get_section_coefficients()
+
         #searchResults = re.split("VERTICAL PLANE RESPONSES",str1)
         #searchResults1 = re.search("VERTICAL PLANE RESPONSES(.*?)VERTICAL PLANE RESPONSES",str1,re.DOTALL).group(1)
 
@@ -254,6 +257,39 @@ class OutputFile():
         #This function reads the geometry definition matrix in the beginning av the file:
 
         self.geometry = geometryClass(self.string)
+
+    def get_section_coefficients(self):
+        """
+        Get the section coefficients
+        :return: pd.DataFrame with coefficients for all sections.
+        """
+        s = self.string
+        parts = re.split('0          TWO-DIMENSIONAL SECTION PROPERTIES', s)
+        s2 = parts[-1]
+
+        project_name=re.search('.+',s).group(0)
+
+        end_tag = project_name
+        parts = re.split(end_tag, s2)
+        s3 = parts[0]
+
+        result = re.search('[^\n]+\n([^\n]+)', s3)
+        keys = result.group(1).split()
+        keys[0] = 'FREQ.'
+
+        parts = re.split('STA.*', s3)
+        df_stations = pd.DataFrame()
+        for i, part in enumerate(parts[1:]):
+            data_ = np.fromstring(part, sep=' ')
+            assert len(data_) % len(keys) == 0
+            n_rows = int(len(data_) / len(keys))
+            data_2 = data_.reshape(n_rows, len(keys))
+            df_data = pd.DataFrame(data=data_2, columns=keys)
+            df_data['station'] = i
+            df_stations = df_stations.append(df_data, ignore_index=True, sort=False)
+
+        return df_stations
+
 
     def getAddedResistanceRAOs(self, rho, B, Lpp):
 

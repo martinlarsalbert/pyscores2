@@ -15,6 +15,10 @@ def test_load_file():
 def scores_file():
     yield OutputFile(filePath='temp.out')
 
+@pytest.fixture
+def scores_file_S175():
+    yield OutputFile(filePath='S175.out')
+
 
 def test_load_roll_damping(scores_file):
 
@@ -34,3 +38,6 @@ def test_get_result_for_all(scores_file):
 def test_get_roll_damping_all(scores_file):
     df = scores_file.get_roll_damping()
     a = 1
+
+def test_get_section_coefficients(scores_file_S175):
+    df_sections = scores_file_S175.get_section_coefficients()

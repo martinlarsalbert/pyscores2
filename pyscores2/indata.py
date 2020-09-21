@@ -16,7 +16,7 @@ class Indata():
         self.projectName = "New Project"
         self.speedMin = 0.0                     # [kts]
         self.speedMax = 10.0                    # [kts]
-        self.speedIncrement = 1.0               # [kts]
+        self.speedIncrement = 5.0               # [kts]
         self.waveDirectionMin = 0.0             # [deg]
         self.waveDirectionMax = 180.0           # [deg]
         self.waveDirectionIncrement = 30.0      # [deg]
