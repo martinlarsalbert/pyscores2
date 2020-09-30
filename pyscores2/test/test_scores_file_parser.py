@@ -1,10 +1,10 @@
 import pytest
 from pyscores2.output import OutputFile
-
+import pyscores2.test
 
 def test_load_file():
 
-    scores_file = OutputFile(filePath='temp.out')
+    scores_file = OutputFile(filePath=pyscores2.test.outdata_path)
     assert hasattr(scores_file, 'results')
     assert 181 in scores_file.results
     assert 180 in scores_file.results[181]
@@ -13,7 +13,7 @@ def test_load_file():
 
 @pytest.fixture
 def scores_file():
-    yield OutputFile(filePath='temp.out')
+    yield OutputFile(filePath=pyscores2.test.outdata_path)
 
 @pytest.fixture
 def scores_file_S175():

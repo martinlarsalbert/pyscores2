@@ -50,6 +50,7 @@ EXTRAS_REQUIRE = {
 
 package_data= {
           "pyscores2": [r"fortran/scores2.exe"],
+          "pyscores2.test": [r'*.in', r'*.out']
       }
 
 setup(name=DISTNAME,

@@ -3,6 +3,7 @@ import sys
 import os
 import numpy as np
 import pandas as pd
+from scipy.integrate import simps
 
 from pyscores2.result import Result, IrregularResults
 from .constants import g
@@ -288,8 +289,52 @@ class OutputFile():
             df_data['station'] = i
             df_stations = df_stations.append(df_data, ignore_index=True, sort=False)
 
+        self.df_sections = df_stations
         return df_stations
 
+
+    def calculate_B_W0(self):
+        """
+        Calculate the wave roll damping at zero speed (Input to the Ikeda method)
+        :return: w,B_W0 (frequency [rad/s], Wave damping [Nm*s/rad])
+        """
+        df_stations = self.df_sections
+        lpp=self.geometry.Lpp
+
+        # Convert dataframes to matrixes for all sections:
+        (n_rows, _) = df_stations.groupby(by='station').get_group(0).shape
+        N_rs = np.zeros(shape=(n_rows, 21))
+        N_s_phis = np.zeros(shape=(n_rows, 21))
+        N_RSs = np.zeros(shape=(n_rows, 21))
+        N_Ss = np.zeros(shape=(n_rows, 21))
+
+        for station, df_station in df_stations.groupby(by='station'):
+            N_rs[:, station] = df_station['N-SUB(R)']
+            N_s_phis[:, station] = df_station['N(S.PHI)']
+            #N_RSs[:, station] = df_station['N-SUB(R.S)']
+            #N_Ss[:, station] = df_station['N-SUB(S)']
+
+        w=df_station['FREQ.']  # [rad/s]
+
+        # Integrate over all sections:
+        N_r = np.zeros(n_rows)
+        N_s_phi = np.zeros(n_rows)
+        #N_RS = np.zeros(n_rows)
+        #N_S = np.zeros(n_rows)
+
+        x_21=np.linspace(0,lpp,21)
+        for i in range(n_rows):
+            N_r[i] = simps(y=N_rs[i, :], x=x_21)
+            N_s_phi[i] = simps(y=N_s_phis[i, :], x=x_21)
+            #N_RS[i] = simps(y=N_RSs[i, :], x=x_21)
+            #N_S[i] = simps(y=N_Ss[i, :], x=x_21)
+
+        draught=self.geometry.drafts.max()
+        OG = self.geometry.vcg - draught
+        B_W0 = N_r + OG * N_s_phi
+        rho = self.geometry.rho
+        B_W0*=rho  # Scores results are given i tons (I think)
+        return w,B_W0
 
     def getAddedResistanceRAOs(self, rho, B, Lpp):
 
@@ -344,6 +389,9 @@ class geometryClass():
 
         searchResult = re.search("GRAVITY =(.*)", self.string)
         self.g = float(searchResult.group(1))
+
+        searchResult = re.search("VCG = +(\S+)", self.string)
+        self.vcg = float(searchResult.group(1))
 
         lines = self.string.split('\n')
 
