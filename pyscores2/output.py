@@ -333,7 +333,7 @@ class OutputFile():
         OG = self.geometry.vcg - draught
         B_W0 = N_r + OG * N_s_phi
         rho = self.geometry.rho
-        B_W0*=rho  # Scores results are given i tons (I think)
+        B_W0*=1000  # Scores results are given i tons (I think)
         return w,B_W0
 
     def getAddedResistanceRAOs(self, rho, B, Lpp):
