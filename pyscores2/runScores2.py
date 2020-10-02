@@ -2,52 +2,13 @@ import sys
 import os
 import shutil
 import subprocess
-from . import output
+from . import output, UnknownError, TooManySectionsError, SumOfWeightDistributionError, DisplacementError, LcgError, \
+    IncrementError, TDPError, TDPFileError
 from . import constants
 from . import RAO
 import re
 import pyscores2
 import pyscores2.indata
-
-
-class UnknownError(Exception):
-    default = r'Unknown error'
-    def __init__(self, *args):
-        if args:
-            self.message = args[0]
-        else:
-            self.message = self.default
-
-    def __str__(self):
-        return '%s: %s' % (self.__class__, self.message)
-
-class TooManySectionsError(ValueError):
-    def __init(self, message=r'Too many sections, wave lengths, wave angles, etc.', *args):
-        super().__init__(message, *args)
-
-class SumOfWeightDistributionError(ValueError):
-    def __init(self, message=r'Sum of weight distribution does not equal the displacement', *args):
-        super().__init__(message, *args)
-
-class DisplacementError(ValueError):
-    def __init(self, message=r'The calculated displacement differs from the given nominal displacement (max 2% deviation alowed)', *args):
-        super().__init__(message, *args)
-
-class LcgError(ValueError):
-    def __init(self, message=r'The calculated longitudinal centre of bouyancy differ from the nomonal value ((LCB-LCG)/L max 0.5%)', *args):
-        super().__init__(message, *args)
-
-class IncrementError(ValueError):
-    def __init(self, message=r'Error in range or increment of variable conditions', *args):
-        super().__init__(message, *args)
-
-class TDPError(ValueError):
-    def __init(self, message=r"TDP calculation incomplete. I don't know what this is but sectionfiles are created but no RAO:s so if only sections area needed this can be dissregarded", *args):
-        super().__init__(message, *args)
-
-class TDPFileError(ValueError):
-    def __init(self, message=r'TDP file label does not equal title data, col. 1-30', *args):
-        super().__init__(message, *args)
 
 
 class Calculation():
