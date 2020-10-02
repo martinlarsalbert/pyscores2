@@ -10,6 +10,46 @@ import pyscores2
 import pyscores2.indata
 
 
+class UnknownError(Exception):
+    default = r'Unknown error'
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = self.default
+
+    def __str__(self):
+        return '%s: %s' % (self.__class__, self.message)
+
+class TooManySectionsError(ValueError):
+    def __init(self, message=r'Too many sections, wave lengths, wave angles, etc.', *args):
+        super().__init__(message, *args)
+
+class SumOfWeightDistributionError(ValueError):
+    def __init(self, message=r'Sum of weight distribution does not equal the displacement', *args):
+        super().__init__(message, *args)
+
+class DisplacementError(ValueError):
+    def __init(self, message=r'The calculated displacement differs from the given nominal displacement (max 2% deviation alowed)', *args):
+        super().__init__(message, *args)
+
+class LcgError(ValueError):
+    def __init(self, message=r'The calculated longitudinal centre of bouyancy differ from the nomonal value ((LCB-LCG)/L max 0.5%)', *args):
+        super().__init__(message, *args)
+
+class IncrementError(ValueError):
+    def __init(self, message=r'Error in range or increment of variable conditions', *args):
+        super().__init__(message, *args)
+
+class TDPError(ValueError):
+    def __init(self, message=r"TDP calculation incomplete. I don't know what this is but sectionfiles are created but no RAO:s so if only sections area needed this can be dissregarded", *args):
+        super().__init__(message, *args)
+
+class TDPFileError(ValueError):
+    def __init(self, message=r'TDP file label does not equal title data, col. 1-30', *args):
+        super().__init__(message, *args)
+
+
 class Calculation():
     def __init__(self, outDataDirectory):
 
@@ -21,20 +61,19 @@ class Calculation():
         self.exe_file_path = pyscores2.exe_file_path
 
         self.errorDescriptions = {}
-        self.errorDescriptions["unknown"] = r'Unknown error'
+        self.errorDescriptions["unknown"] = UnknownError()
         self.errorDescriptions[
-            "  0"] = r'Too many sections, wave lengths, wave angles, etc.'
+            "  0"] = TooManySectionsError()
         self.errorDescriptions[
-            "  1"] = r'Sum of weight distribution does not equal the displacement'
+            "  1"] = SumOfWeightDistributionError()
         self.errorDescriptions[
-            "  2"] = r'The calculated displacement differs from the given nominal displacement (max 2% deviation alowed)'
+            "  2"] = DisplacementError()
         self.errorDescriptions[
-            "  3"] = r'The calculated longitudinal centre of bouyancy differ from the nomonal value ((LCB-LCG)/L max 0.5%)'
+            "  3"] = LcgError()
         self.errorDescriptions[
-            "  4"] = r'Error in range or increment of variable conditions'
-        self.errorDescriptions["  5"] = r'TDP calculation incomplete'
-        self.errorDescriptions[
-            "  6"] = r'TDP file label does not equal title data, col. 1-30'
+            "  4"] = IncrementError()
+        self.errorDescriptions["  5"] = TDPError()
+        self.errorDescriptions["  6"] = TDPFileError()
 
         self.outDataPath = ''
 
@@ -99,7 +138,7 @@ class Calculation():
         if check_errors:
             errorCode, errorDescription = self.parse_error()
             if not errorCode=='unknown':
-                raise ValueError(errorDescription)
+                raise errorDescription
 
     @property
     def is_successfull_run(self):
@@ -154,22 +193,22 @@ class Calculation():
         if errorCode in self.errorDescriptions:
             errorDescription = self.errorDescriptions[errorCode]
         else:
-            errorDescription = 'unknown error'
+            errorDescription = UnknownError()
 
         if errorCode == "  2":
             calculatedDisplacement = self.parse_calculated_displacement()
             if calculatedDisplacement != None:
-                errorDescription += " Calculated displacement = %f m3" % calculatedDisplacement
+                errorDescription.message += " Calculated displacement = %f m3" % calculatedDisplacement
 
         if errorCode == "  3":
             calculatedLCB = self.parse_calculated_LCB()
             if calculatedLCB != None:
-                errorDescription += " Calculated LCB = %f m (FWD. OF MIDSHIPS)" % calculatedLCB
+                errorDescription.message += " Calculated LCB = %f m (FWD. OF MIDSHIPS)" % calculatedLCB
 
         GM = self.parseGM()
         if GM != None:
             if GM < 0:
-                errorDescription += " GM is negative"
+                errorDescription.message += " GM is negative"
 
         return errorCode, errorDescription
 
