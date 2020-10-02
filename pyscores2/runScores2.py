@@ -38,7 +38,7 @@ class Calculation():
 
         self.outDataPath = ''
 
-    def run(self, indata_file_path=None, indata=None, check_errors=True, b_div_t_max=20):
+    def run(self, indata_file_path=None, indata=None, check_errors=True, b_div_t_max=20, t_div_b_max=10, timeout=5):
         """
 		run Scores2
 		You can run it either by specifying the indata file path or provide an Indata object.
@@ -61,7 +61,7 @@ class Calculation():
         if indata_file_path is None:
             assert isinstance(indata, pyscores2.indata.Indata)
             self.indataFileName = indata.projectName
-            indata.save(indataPath=self.standardIndataFile, b_div_t_max=b_div_t_max)
+            indata.save(indataPath=self.standardIndataFile, b_div_t_max=b_div_t_max, t_div_b_max=t_div_b_max)
 
         else:
             assert isinstance(indata_file_path, str)
@@ -88,7 +88,11 @@ class Calculation():
                              self.exe_file_path)
 
         process = subprocess.Popen(self.exe_file_path, stderr=subprocess.PIPE)
-        process.wait()
+        try:
+            process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            process.terminate()
+            raise
 
         #Copy the resultfiles to the outDataDirectory:
         shutil.move(self.standardOutdataFile, self.outDataPath)
@@ -100,6 +104,9 @@ class Calculation():
             errorCode, errorDescription = self.parse_error()
             if not errorCode=='unknown':
                 raise errorDescription
+
+            # Try reading the file:
+            output = pyscores2.output.OutputFile(filePath=self.outDataPath)
 
     @property
     def is_successfull_run(self):

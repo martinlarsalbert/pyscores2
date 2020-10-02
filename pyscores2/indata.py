@@ -376,7 +376,7 @@ class Indata():
 
         self.lines = lines
 
-    def save(self, indataPath, waveSpectrums=[], b_div_t_max=20):
+    def save(self, indataPath, waveSpectrums=[], b_div_t_max=20, t_div_b_max=10):
         self.indataPath = str(indataPath)
 
         try:
@@ -413,6 +413,10 @@ class Indata():
 
         if not b_div_t_max is None:
             bs,ts=limit_beam_draft_ratio(bs,ts,cScores,b_div_t_max)
+
+        if not t_div_b_max is None:
+            bs, ts = limit_draft_beam_ratio(bs, ts, cScores, t_div_b_max)
+
 
         for b, cScores, t, zbar in zip(bs, cScores, ts, zbars):
             file.write("%-10.4f%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t, zbar))
@@ -545,7 +549,19 @@ class Indata():
         file.close()
 
 
+def limit_section_ratio(b, t, cScores, ratio_max=20):
+    b_new, t_new = limit_beam_draft_ratio(b, t, cScores, b_div_t_max=ratio_max)
+    b_newer, t_newer = limit_draft_beam_ratio(b_new, t_new, cScores, t_div_b_max=ratio_max)
+    return b_newer, t_newer
+
 def limit_beam_draft_ratio(b, t, cScores, b_div_t_max=20):
+    return _limit_beam_draft_ratio(b, t, cScores, b_div_t_max=b_div_t_max)
+
+def limit_draft_beam_ratio(b, t, cScores, t_div_b_max=20):
+    t_new, b_new = _limit_beam_draft_ratio(t, b, cScores, b_div_t_max=t_div_b_max)
+    return b_new, t_new
+
+def _limit_beam_draft_ratio(b, t, cScores, b_div_t_max=20):
     """
     Sometimes the sections have too high beam to draught ratios b/t.
     :param b:
@@ -565,7 +581,6 @@ def limit_beam_draft_ratio(b, t, cScores, b_div_t_max=20):
     # -->t=(area/(t*cScores))/b_div_t_max
     # -->t^2=(area/(cScores))/b_div_t_max
     # -->t=sqrt((area/(cScores))/b_div_t_max)
-
 
     area=b[mask]*t[mask]*cScores[mask]
     t_new[mask] = np.sqrt((area / (cScores[mask])) / b_div_t_max)

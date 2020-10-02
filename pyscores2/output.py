@@ -11,7 +11,7 @@ from .constants import rho
 from . import waveSpectrum
 
 from . import RAO
-
+import pyscores2
 
 class OutputFile():
     def __init__(self, filePath):
@@ -28,6 +28,9 @@ class OutputFile():
 
         with open(self.filePath, mode='r') as file:
             str = file.read()
+
+        if os.path.getsize(self.filePath) == 0:
+            raise pyscores2.OutputFileEmptyError('Output file too small (%s)' % self.filePath)
 
         #This one can be used to find when certain parts of data ends.
         self.itemSeparator = str.split('\n')[0]
