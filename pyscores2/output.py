@@ -270,9 +270,12 @@ class OutputFile():
 
         project_name=re.search('.+',s).group(0)
 
-        end_tag = project_name
-        parts = re.split(end_tag, s2)
-        s3 = parts[0]
+        end_tags = [project_name, '0STOP']
+
+        s3=s2
+        for end_tag in end_tags:
+            parts = re.split(end_tag, s3)
+            s3 = parts[0]
 
         result = re.search('[^\n]+\n([^\n]+)', s3)
         keys = result.group(1).split()
