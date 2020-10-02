@@ -1,7 +1,9 @@
 import pytest
 import pyscores2
 import os
-from pyscores2.indata import Indata
+import numpy as np
+from pyscores2.indata import Indata, limit_beam_draft_ratio
+from numpy.testing import assert_almost_equal
 
 
 def test_open_indata():
@@ -37,3 +39,22 @@ def test_open_and_save_indata2(tmpdir):
     assert indata2.waveDirectionIncrement == 12
     assert indata2.waveDirectionMin == 2
     assert indata2.waveDirectionMax == 24
+
+def test_limit_beam_draft_ratio():
+
+    N = 2
+    b = np.ones(N)
+    ratios = np.array([30,15])
+    t = b/ratios
+    cScores = 0.9*np.ones(N)
+
+    b_div_t_max=20
+    b_new, t_new = limit_beam_draft_ratio(b=b,t=t, cScores=cScores, b_div_t_max=b_div_t_max)
+
+    ratios_desired = np.array([20, 15])
+    assert_almost_equal(b_new/t_new,ratios_desired)
+    assert_almost_equal(b_new*t_new*cScores, b*t*cScores)
+
+    assert_almost_equal(b_new[1], b[1])
+    assert_almost_equal(t_new[1], t[1])
+

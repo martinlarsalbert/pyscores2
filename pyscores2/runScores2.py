@@ -38,7 +38,7 @@ class Calculation():
 
         self.outDataPath = ''
 
-    def run(self, indata_file_path=None, indata=None, check_errors=True):
+    def run(self, indata_file_path=None, indata=None, check_errors=True, b_div_t_max=20):
         """
 		run Scores2
 		You can run it either by specifying the indata file path or provide an Indata object.
@@ -61,7 +61,7 @@ class Calculation():
         if indata_file_path is None:
             assert isinstance(indata, pyscores2.indata.Indata)
             self.indataFileName = indata.projectName
-            indata.save(indataPath=self.standardIndataFile)
+            indata.save(indataPath=self.standardIndataFile, b_div_t_max=b_div_t_max)
 
         else:
             assert isinstance(indata_file_path, str)

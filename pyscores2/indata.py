@@ -376,7 +376,7 @@ class Indata():
 
         self.lines = lines
 
-    def save(self, indataPath, waveSpectrums=[]):
+    def save(self, indataPath, waveSpectrums=[], b_div_t_max=20):
         self.indataPath = str(indataPath)
 
         try:
@@ -406,19 +406,17 @@ class Indata():
 
         # 4  Hull form cards____________________________
         # The frames in ScoresII are counted from FP, but this GUI uses a traditional numbering from AP so the geomtry vectors have to be reversed.
-        self.bs=np.flipud(self.bs)
-        self.cScores=np.flipud(self.cScores)
-        self.ts=np.flipud(self.ts)
-        self.zbars=np.flipud(self.zbars)
+        bs=np.flipud(self.bs)
+        cScores=np.flipud(self.cScores)
+        ts=np.flipud(self.ts)
+        zbars=np.flipud(self.zbars)
 
-        for b, cScores, t, zbar in zip(self.bs, self.cScores, self.ts, self.zbars):
+        if not b_div_t_max is None:
+            bs,ts=limit_beam_draft_ratio(bs,ts,cScores,b_div_t_max)
+
+        for b, cScores, t, zbar in zip(bs, cScores, ts, zbars):
             file.write("%-10.4f%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t, zbar))
 
-        # Reverse it back...
-        self.bs=np.flipud(self.bs)
-        self.cScores=np.flipud(self.cScores)
-        self.ts=np.flipud(self.ts)
-        self.zbars=np.flipud(self.zbars)
 
         # 5  Section Card_______________________________
         # (Needed only if close-fitted option IM > 0
@@ -546,6 +544,34 @@ class Indata():
 
         file.close()
 
+
+def limit_beam_draft_ratio(b, t, cScores, b_div_t_max=20):
+    """
+    Sometimes the sections have too high beam to draught ratios b/t.
+    :param b:
+    :param t:
+    :param cScores:
+    :param b_div_t_max:
+    :return: b_new, t_new
+    """
+
+    t_new = np.array(t, dtype=float)
+    b_new = np.array(b, dtype=float)
+
+    mask = np.divide(b_new, t_new, out=np.ones_like(b_new)*1.1*b_div_t_max, where=t_new!=0) > b_div_t_max  # Too large beam/draught ratios...
+    # b*t*cScores=area
+    # -->b=area/(t*cScores)
+    # t=b/b_div_t_max
+    # -->t=(area/(t*cScores))/b_div_t_max
+    # -->t^2=(area/(cScores))/b_div_t_max
+    # -->t=sqrt((area/(cScores))/b_div_t_max)
+
+
+    area=b[mask]*t[mask]*cScores[mask]
+    t_new[mask] = np.sqrt((area / (cScores[mask])) / b_div_t_max)
+    b_new[mask] = t_new[mask] * b_div_t_max
+
+    return b_new, t_new
 
 class RunOption(object):
     """This is a class that stores a run option"""
