@@ -4,17 +4,19 @@ import os
 import numpy as np
 from pyscores2.indata import Indata, limit_beam_draft_ratio, limit_section_ratio
 from numpy.testing import assert_almost_equal
+import pyscores2.test
 
+temp_in_path = os.path.join(pyscores2.test.path,'temp.in')
 
 def test_open_indata():
     indata = Indata()
-    indata.open('temp.in')
+    indata.open(temp_in_path)
     assert indata.kxx == 15
 
 
 def test_open_and_save_indata(tmpdir):
     indata = Indata()
-    indata.open('temp.in')
+    indata.open(temp_in_path)
     new_file_path = os.path.join(str(tmpdir), 'test.in')
     indata.save(indataPath=new_file_path)
 
@@ -25,7 +27,7 @@ def test_open_and_save_indata(tmpdir):
 
 def test_open_and_save_indata2(tmpdir):
     indata = Indata()
-    indata.open('temp.in')
+    indata.open(temp_in_path)
     indata.waveDirectionIncrement = 12
     indata.waveDirectionMin = 2
     indata.waveDirectionMax = 24

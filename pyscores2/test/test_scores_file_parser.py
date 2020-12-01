@@ -1,6 +1,7 @@
 import pytest
 from pyscores2.output import OutputFile
 import pyscores2.test
+import os
 
 def test_load_file():
 
@@ -17,7 +18,7 @@ def scores_file():
 
 @pytest.fixture
 def scores_file_S175():
-    yield OutputFile(filePath='S175.out')
+    yield OutputFile(filePath=os.path.join(pyscores2.test.path,'S175.out'))
 
 
 def test_load_roll_damping(scores_file):
