@@ -31,7 +31,7 @@ class Parser(object):
 
                 name = condition.find('Name').text
 
-                self.conditions[name] = Condition(condition)
+                self.conditions[name] = Condition(condition, ship=self)
 
         else:
             raise ValueError('Not a valid XML file with hydrostatics data')
@@ -87,7 +87,7 @@ class Parser(object):
             self.scores2Indata.lpp = self.lpp
             self.scores2Indata.draught = T
             self.scores2Indata.displacement = condition.Displacement
-            self.scores2Indata.lcb = condition.LCBproc
+            self.scores2Indata.lcb = condition.LCB
             self.scores2Indata.projectName = "%s %s" % (self.shipModel,
                                                         condition.Name)
             #self.scores2Indata.speedMin = 0.0
@@ -110,14 +110,16 @@ class Parser(object):
 
 
 class Condition(object):
-    def __init__(self, condition):
+    def __init__(self, condition, ship:Parser):
 
         self.Name = condition.find('Name').text
         self.B = float(condition.find('B').text)
         self.TF = float(condition.find('TF').text)
         self.TA = float(condition.find('TA').text)
         self.Displacement = float(condition.find('Displacement').text)
-        self.LCB = float(condition.find('LCB').text)
+        LCB_from_aft = float(condition.find('LCB').text)
+        
+        self.LCB = LCB_from_aft-ship.lpp/2
         self.LCBproc = float(condition.find('LCBproc').text)
 
         self.sections = []

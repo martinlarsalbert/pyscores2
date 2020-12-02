@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScoresIndata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <HydroInput>
+    <ReportTitle>SSPA Hydrostatics</ReportTitle>
+    <ShipModel>KVLCC2m_kbk_final</ShipModel>
+    <Lpp>320</Lpp>
+    <WaterDensity>1025</WaterDensity>
+    <Date>2017-06-22</Date>
+  </HydroInput>
+  <Conditions>
+    <ConditionData>
+      <Name>Design</Name>
+      <B>58.000007629394531</B>
+      <TF>20.8</TF>
+      <TA>20.8</TA>
+      <Displacement>312652.94536125928</Displacement>
+      <LCB>171.26690201447988</LCB>
+      <LCBproc>3.5209068795249632</LCBproc>
+      <Sections>
+        <Section>
+          <Index>0</Index>
+          <XPosition unit="m">0</XPosition>
+          <Area unit="m2">37.619609798003566</Area>
+          <BeamWaterline unit="m">18.133782042064507</BeamWaterline>
+          <Girth unit="m">19.586220975665807</Girth>
+          <Draught unit="m">3.5498893716126005</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">1.267116669298666</CentroidZ>
+        </Section>
+        <Section>
+          <Index>1</Index>
+          <XPosition unit="m">16</XPosition>
+          <Area unit="m2">223.94966175138131</Area>
+          <BeamWaterline unit="m">33.213862743557392</BeamWaterline>
+          <Girth unit="m">60.765087127122548</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">-2.2840014450341093E-15</CentroidY>
+          <CentroidZ unit="m">5.8941903919202083</CentroidZ>
+        </Section>
+        <Section>
+          <Index>2</Index>
+          <XPosition unit="m">32</XPosition>
+          <Area unit="m2">495.99054861727075</Area>
+          <BeamWaterline unit="m">44.561990190891954</BeamWaterline>
+          <Girth unit="m">64.865849361066012</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">4.0108662864457672E-16</CentroidY>
+          <CentroidZ unit="m">7.5312129871154472</CentroidZ>
+        </Section>
+        <Section>
+          <Index>3</Index>
+          <XPosition unit="m">48</XPosition>
+          <Area unit="m2">746.679838100081</Area>
+          <BeamWaterline unit="m">52.508111706421893</BeamWaterline>
+          <Girth unit="m">71.318217039120981</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">8.4090336252645</CentroidZ>
+        </Section>
+        <Section>
+          <Index>4</Index>
+          <XPosition unit="m">64</XPosition>
+          <Area unit="m2">943.63543679395241</Area>
+          <BeamWaterline unit="m">56.759547378145513</BeamWaterline>
+          <Girth unit="m">78.357975395962839</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">2.0789231397534826E-15</CentroidY>
+          <CentroidZ unit="m">9.07240985697119</CentroidZ>
+        </Section>
+        <Section>
+          <Index>5</Index>
+          <XPosition unit="m">80</XPosition>
+          <Area unit="m2">1075.2421220291535</Area>
+          <BeamWaterline unit="m">57.979809072489935</BeamWaterline>
+          <Girth unit="m">84.66609496037492</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">2.622207911581618E-15</CentroidY>
+          <CentroidZ unit="m">9.6196295476135631</CentroidZ>
+        </Section>
+        <Section>
+          <Index>6</Index>
+          <XPosition unit="m">96</XPosition>
+          <Area unit="m2">1150.6971228818115</Area>
+          <BeamWaterline unit="m">58.000008887099831</BeamWaterline>
+          <Girth unit="m">89.89526922793118</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">7.504642834124993E-15</CentroidY>
+          <CentroidZ unit="m">10.024067898328614</CentroidZ>
+        </Section>
+        <Section>
+          <Index>7</Index>
+          <XPosition unit="m">112</XPosition>
+          <Area unit="m2">1188.9440277561096</Area>
+          <BeamWaterline unit="m">58.000008887099838</BeamWaterline>
+          <Girth unit="m">94.17703127534547</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.270076499362224</CentroidZ>
+        </Section>
+        <Section>
+          <Index>8</Index>
+          <XPosition unit="m">128</XPosition>
+          <Area unit="m2">1203.6644758387897</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.4337176141735</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.377636140499662</CentroidZ>
+        </Section>
+        <Section>
+          <Index>9</Index>
+          <XPosition unit="m">144</XPosition>
+          <Area unit="m2">1203.9279886898032</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539838338984083</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379745004399352</CentroidZ>
+        </Section>
+        <Section>
+          <Index>10</Index>
+          <XPosition unit="m">160</XPosition>
+          <Area unit="m2">1203.92800813525</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539846442767953</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379745168844064</CentroidZ>
+        </Section>
+        <Section>
+          <Index>11</Index>
+          <XPosition unit="m">176</XPosition>
+          <Area unit="m2">1203.9279692448918</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539830235420908</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379744860405937</CentroidZ>
+        </Section>
+        <Section>
+          <Index>12</Index>
+          <XPosition unit="m">192</XPosition>
+          <Area unit="m2">1203.9280081352513</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539846442767953</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379745168844062</CentroidZ>
+        </Section>
+        <Section>
+          <Index>13</Index>
+          <XPosition unit="m">208</XPosition>
+          <Area unit="m2">1203.9280081352501</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539846442767953</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379745168844066</CentroidZ>
+        </Section>
+        <Section>
+          <Index>14</Index>
+          <XPosition unit="m">224</XPosition>
+          <Area unit="m2">1203.9280081352508</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">97.539846442767981</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.379745168844057</CentroidZ>
+        </Section>
+        <Section>
+          <Index>15</Index>
+          <XPosition unit="m">240</XPosition>
+          <Area unit="m2">1199.392495123557</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">96.17488189666409</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">-6.5858982467237324E-15</CentroidY>
+          <CentroidZ unit="m">10.345406412787955</CentroidZ>
+        </Section>
+        <Section>
+          <Index>16</Index>
+          <XPosition unit="m">256</XPosition>
+          <Area unit="m2">1172.4272758470829</Area>
+          <BeamWaterline unit="m">57.733937367250746</BeamWaterline>
+          <Girth unit="m">92.59643412271555</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.209576776692476</CentroidZ>
+        </Section>
+        <Section>
+          <Index>17</Index>
+          <XPosition unit="m">272</XPosition>
+          <Area unit="m2">1103.3818581832354</Area>
+          <BeamWaterline unit="m">56.310859923010781</BeamWaterline>
+          <Girth unit="m">87.473666216581449</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">9.9874751338638781</CentroidZ>
+        </Section>
+        <Section>
+          <Index>18</Index>
+          <XPosition unit="m">288</XPosition>
+          <Area unit="m2">953.39727755866738</Area>
+          <BeamWaterline unit="m">50.8505310356798</BeamWaterline>
+          <Girth unit="m">79.310518616128491</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">4.506665114556476E-15</CentroidY>
+          <CentroidZ unit="m">9.7054907399716885</CentroidZ>
+        </Section>
+        <Section>
+          <Index>19</Index>
+          <XPosition unit="m">304</XPosition>
+          <Area unit="m2">656.54246172965759</Area>
+          <BeamWaterline unit="m">36.348037472555433</BeamWaterline>
+          <Girth unit="m">65.137581912708669</Girth>
+          <Draught unit="m">20.8</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">-6.3232723396276145E-15</CentroidY>
+          <CentroidZ unit="m">9.3903811667107284</CentroidZ>
+        </Section>
+        <Section>
+          <Index>20</Index>
+          <XPosition unit="m">320</XPosition>
+          <Area unit="m2">173.29871149078434</Area>
+          <BeamWaterline unit="m">0</BeamWaterline>
+          <Girth unit="m">50.832886430392918</Girth>
+          <Draught unit="m">19.705116428808864</Draught>
+          <Depth unit="m">20.8</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">10.571396763331913</CentroidZ>
+        </Section>
+      </Sections>
+    </ConditionData>
+    <ConditionData>
+      <Name>Ballast</Name>
+      <B>58.000007629394531</B>
+      <TF>6.7</TF>
+      <TA>11.9</TA>
+      <Displacement>126234.68136804603</Displacement>
+      <LCB>164.47377853983446</LCB>
+      <LCBproc>1.3980557936982674</LCBproc>
+      <Sections>
+        <Section>
+          <Index>0</Index>
+          <XPosition unit="m">0</XPosition>
+          <Area unit="m2">0</Area>
+          <BeamWaterline unit="m">0</BeamWaterline>
+          <Girth unit="m">0</Girth>
+          <Draught unit="m">0</Draught>
+          <Depth unit="m">11.9</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">0</CentroidZ>
+        </Section>
+        <Section>
+          <Index>1</Index>
+          <XPosition unit="m">16</XPosition>
+          <Area unit="m2">50.685896829042377</Area>
+          <BeamWaterline unit="m">4.5035169159132806</BeamWaterline>
+          <Girth unit="m">26.144267341322085</Girth>
+          <Draught unit="m">11.640034321327919</Draught>
+          <Depth unit="m">11.640034321327919</Depth>
+          <CentroidY unit="m">-2.2204460492503131E-16</CentroidY>
+          <CentroidZ unit="m">5.8121781897299</CentroidZ>
+        </Section>
+        <Section>
+          <Index>2</Index>
+          <XPosition unit="m">32</XPosition>
+          <Area unit="m2">163.03629559528284</Area>
+          <BeamWaterline unit="m">21.736545846473174</BeamWaterline>
+          <Girth unit="m">34.774844164555404</Girth>
+          <Draught unit="m">11.380068642655836</Draught>
+          <Depth unit="m">11.380068642655836</Depth>
+          <CentroidY unit="m">5.3952342448412334E-16</CentroidY>
+          <CentroidZ unit="m">4.9448025258298616</CentroidZ>
+        </Section>
+        <Section>
+          <Index>3</Index>
+          <XPosition unit="m">48</XPosition>
+          <Area unit="m2">289.61498437381681</Area>
+          <BeamWaterline unit="m">38.537717361949269</BeamWaterline>
+          <Girth unit="m">46.972851373376123</Girth>
+          <Draught unit="m">11.120102963983754</Draught>
+          <Depth unit="m">11.120102963983754</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.7308711110673949</CentroidZ>
+        </Section>
+        <Section>
+          <Index>4</Index>
+          <XPosition unit="m">64</XPosition>
+          <Area unit="m2">405.03757249130371</Area>
+          <BeamWaterline unit="m">49.585932114610316</BeamWaterline>
+          <Girth unit="m">56.965135906486196</Girth>
+          <Draught unit="m">10.860137285311671</Draught>
+          <Depth unit="m">10.860137285311671</Depth>
+          <CentroidY unit="m">1.5918295840671258E-15</CentroidY>
+          <CentroidZ unit="m">4.7273648948083205</CentroidZ>
+        </Section>
+        <Section>
+          <Index>5</Index>
+          <XPosition unit="m">80</XPosition>
+          <Area unit="m2">492.14511160116615</Area>
+          <BeamWaterline unit="m">55.3287080199214</BeamWaterline>
+          <Girth unit="m">64.016303952875745</Girth>
+          <Draught unit="m">10.60017160663959</Draught>
+          <Depth unit="m">10.60017160663959</Depth>
+          <CentroidY unit="m">5.4007350861734988E-15</CentroidY>
+          <CentroidZ unit="m">4.8182812809620659</CentroidZ>
+        </Section>
+        <Section>
+          <Index>6</Index>
+          <XPosition unit="m">96</XPosition>
+          <Area unit="m2">544.58061279782942</Area>
+          <BeamWaterline unit="m">57.588797209010963</BeamWaterline>
+          <Girth unit="m">68.961546090304338</Girth>
+          <Draught unit="m">10.340205927967506</Draught>
+          <Depth unit="m">10.340205927967506</Depth>
+          <CentroidY unit="m">5.2227964551599481E-15</CentroidY>
+          <CentroidZ unit="m">4.9043750238553629</CentroidZ>
+        </Section>
+        <Section>
+          <Index>7</Index>
+          <XPosition unit="m">112</XPosition>
+          <Area unit="m2">567.183932486399</Area>
+          <BeamWaterline unit="m">58.000008887099817</BeamWaterline>
+          <Girth unit="m">72.737031275345458</Girth>
+          <Draught unit="m">10.080240249295425</Draught>
+          <Depth unit="m">10.080240249295425</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.9328557402716759</CentroidZ>
+        </Section>
+        <Section>
+          <Index>8</Index>
+          <XPosition unit="m">128</XPosition>
+          <Area unit="m2">566.82437825843363</Area>
+          <BeamWaterline unit="m">58.00000888709981</BeamWaterline>
+          <Girth unit="m">75.473717614173481</Girth>
+          <Draught unit="m">9.8202745706233436</Draught>
+          <Depth unit="m">9.8202745706233436</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.8892812238321781</CentroidZ>
+        </Section>
+        <Section>
+          <Index>9</Index>
+          <XPosition unit="m">144</XPosition>
+          <Area unit="m2">552.00788879880042</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">75.059838338984065</Girth>
+          <Draught unit="m">9.56030889195126</Draught>
+          <Depth unit="m">9.56030889195126</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.7613022547317874</CentroidZ>
+        </Section>
+        <Section>
+          <Index>10</Index>
+          <XPosition unit="m">160</XPosition>
+          <Area unit="m2">536.92790593360212</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">74.539846442767953</Girth>
+          <Draught unit="m">9.3003432132791772</Draught>
+          <Depth unit="m">9.3003432132791772</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.6314014851684933</CentroidZ>
+        </Section>
+        <Section>
+          <Index>11</Index>
+          <XPosition unit="m">176</XPosition>
+          <Area unit="m2">521.84786473259646</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">74.019830235420869</Girth>
+          <Draught unit="m">9.0403775346070958</Draught>
+          <Depth unit="m">9.0403775346070958</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.50150402380832</CentroidZ>
+        </Section>
+        <Section>
+          <Index>12</Index>
+          <XPosition unit="m">192</XPosition>
+          <Area unit="m2">506.76790131231024</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">73.499846442767932</Girth>
+          <Draught unit="m">8.7804118559350144</Draught>
+          <Depth unit="m">8.7804118559350144</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.371611185177672</CentroidZ>
+        </Section>
+        <Section>
+          <Index>13</Index>
+          <XPosition unit="m">208</XPosition>
+          <Area unit="m2">491.68789900166428</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">72.979846442767979</Girth>
+          <Draught unit="m">8.5204461772629365</Draught>
+          <Depth unit="m">8.5204461772629312</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.24172252449759</CentroidZ>
+        </Section>
+        <Section>
+          <Index>14</Index>
+          <XPosition unit="m">224</XPosition>
+          <Area unit="m2">476.60789669101791</Area>
+          <BeamWaterline unit="m">58.000008887099824</BeamWaterline>
+          <Girth unit="m">72.459846442768</Girth>
+          <Draught unit="m">8.2604804985908533</Draught>
+          <Depth unit="m">8.26048049859085</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">4.111838737557564</CentroidZ>
+        </Section>
+        <Section>
+          <Index>15</Index>
+          <XPosition unit="m">240</XPosition>
+          <Area unit="m2">456.99250036099443</Area>
+          <BeamWaterline unit="m">57.999741488051995</BeamWaterline>
+          <Girth unit="m">70.574881876765176</Girth>
+          <Draught unit="m">8.0005148199187666</Draught>
+          <Depth unit="m">8.0005148199187666</Depth>
+          <CentroidY unit="m">-5.5428879181030854E-15</CentroidY>
+          <CentroidZ unit="m">3.9553708601153765</CentroidZ>
+        </Section>
+        <Section>
+          <Index>16</Index>
+          <XPosition unit="m">256</XPosition>
+          <Area unit="m2">420.13647000123979</Area>
+          <BeamWaterline unit="m">57.281498049659589</BeamWaterline>
+          <Girth unit="m">66.469266089300291</Girth>
+          <Draught unit="m">7.7405491412466851</Draught>
+          <Depth unit="m">7.7405491412466851</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">3.7507674623176488</CentroidZ>
+        </Section>
+        <Section>
+          <Index>17</Index>
+          <XPosition unit="m">272</XPosition>
+          <Area unit="m2">363.13887574329249</Area>
+          <BeamWaterline unit="m">53.968868283852508</BeamWaterline>
+          <Girth unit="m">60.678601359296643</Girth>
+          <Draught unit="m">7.4805834625746028</Draught>
+          <Depth unit="m">7.4805834625746028</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">3.5329016582616477</CentroidZ>
+        </Section>
+        <Section>
+          <Index>18</Index>
+          <XPosition unit="m">288</XPosition>
+          <Area unit="m2">281.63441501826037</Area>
+          <BeamWaterline unit="m">46.451067536577455</BeamWaterline>
+          <Girth unit="m">51.62957660775416</Girth>
+          <Draught unit="m">7.2206177839025205</Draught>
+          <Depth unit="m">7.2206177839025205</Depth>
+          <CentroidY unit="m">9.6902057892054385E-16</CentroidY>
+          <CentroidZ unit="m">3.2889139657926636</CentroidZ>
+        </Section>
+        <Section>
+          <Index>19</Index>
+          <XPosition unit="m">304</XPosition>
+          <Area unit="m2">168.55788358623931</Area>
+          <BeamWaterline unit="m">32.172111676980762</BeamWaterline>
+          <Girth unit="m">36.785791138946578</Girth>
+          <Draught unit="m">6.9606521052304382</Draught>
+          <Depth unit="m">6.9606521052304382</Depth>
+          <CentroidY unit="m">-2.4508244780702059E-15</CentroidY>
+          <CentroidZ unit="m">2.9743143884889442</CentroidZ>
+        </Section>
+        <Section>
+          <Index>20</Index>
+          <XPosition unit="m">320</XPosition>
+          <Area unit="m2">39.446875386270264</Area>
+          <BeamWaterline unit="m">11.634241551220871</BeamWaterline>
+          <Girth unit="m">16.436767449474882</Girth>
+          <Draught unit="m">5.60580285536722</Draught>
+          <Depth unit="m">6.7006864265583559</Depth>
+          <CentroidY unit="m">0</CentroidY>
+          <CentroidZ unit="m">2.073872730591714</CentroidZ>
+        </Section>
+      </Sections>
+    </ConditionData>
+  </Conditions>
+</ScoresIndata>
