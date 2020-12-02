@@ -52,6 +52,7 @@ class Parser(object):
         self.scores2Indata.cScores = []
         self.scores2Indata.bs = []
         self.scores2Indata.ts = []
+        self.scores2Indata.zbars = []
 
         T = 0
 
@@ -60,9 +61,11 @@ class Parser(object):
             Index = section.Index
             XPosition = section.XPosition
             Area = section.Area
+
             BeamWaterline = section.BeamWaterline
             Draught = section.Draught
             CenteroidZ = section.CentroidZ
+            zbar = CenteroidZ
 
             squareArea = (BeamWaterline * Draught)
             if squareArea > 0:
@@ -79,6 +82,7 @@ class Parser(object):
             self.scores2Indata.cScores.append(cScores)
             self.scores2Indata.bs.append(bs)
             self.scores2Indata.ts.append(ts)
+            self.scores2Indata.zbars.append(zbar)
 
             self.scores2Indata.lpp = self.lpp
             self.scores2Indata.draught = T

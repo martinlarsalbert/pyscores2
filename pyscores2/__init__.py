@@ -36,3 +36,5 @@ class TDPError(UnknownError): default=r"TDP calculation incomplete. I don't know
 class TDPFileError(UnknownError): default=r'TDP file label does not equal title data, col. 1-30'
 
 class OutputFileEmptyError(UnknownError): default=r'The output file is empty'
+
+class ZbarsMissingError(UnknownError): default=r'indata does not have zbars'

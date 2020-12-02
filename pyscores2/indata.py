@@ -1,6 +1,6 @@
 # This module can open and save indata files for ScoresII
 import numpy as np
-
+import pyscores2
 
 class Indata():
     def __init__(self):
@@ -417,6 +417,8 @@ class Indata():
         if not t_div_b_max is None:
             bs, ts = limit_draft_beam_ratio(bs, ts, cScores, t_div_b_max)
 
+        if len(zbars)==0:
+            raise pyscores2.ZbarsMissingError()
 
         for b, cScores, t, zbar in zip(bs, cScores, ts, zbars):
             file.write("%-10.4f%-10.4f%-10.4f%-10.4f\n" % (b, cScores, t, zbar))
